@@ -1,25 +1,14 @@
 
-[![NuGet Badge](https://buildstats.info/nuget/Bobby.CleanArcTemplate)](https://www.nuget.org/packages/Bobby.CleanArcTemplate)
+[![NuGet Badge](https://buildstats.info/nuget/GangOfDev.CleanArcTemplate)](https://www.nuget.org/packages/GangOfDev.CleanArcTemplate)
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
-![workflow](https://github.com/babaktaremi/Clean-Architecture-Template/actions/workflows/package.yml/badge.svg)
+![workflow](https://github.com/gangofdev/Clean-Architecture-Template/actions/workflows/package.yml/badge.svg)
 
 
- <a href="https://www.linkedin.com/in/babak-taremi/" alt="Connect on LinkedIn">
-   <img src="https://img.shields.io/badge/-Babak%20Taremi-0072b1?style=flat&logo=Linkedin&logoColor=white" />
- </a>
- 
-  <a href="mailto:babaktaremi@yahoo.com" alt="Email">
-  <img src="https://img.shields.io/badge/-Babak%20Taremi-0072b1?style=flat&logo=yahoo&logoColor=white&color=purple" />
- </a>
- 
-  <a href="https://t.me/BoB_Tm" alt="My Telegram">
-   <img src="https://img.shields.io/badge/-Babak%20Taremi-0072b1?style=flat&logo=telegram&logoColor=white&color=darkblue" />
- </a>
 
-# ASP NET Core 8 Clean architecture boiler plate. Everything that you need to start an enterprise project!
+# DOT NET Clean architecture boiler plate. Everything that a team need to start an enterprise project!
 
-Personally I've seen a lot of ASP NET Core based clean architecture templates, but most of them are not usable in production and you face problems created by the framework itself rather than the actual domain problems. I've worked for about 5 years in different startups and companies so trust me when I say this framework was built upon actual real-world challenges rather than reading a book and convert its every paragraph to code.
+In our Gang of Dev experience, we've come across numerous ASP.NET Core-based clean architecture templates. However, the majority of them aren't production-ready, often presenting issues stemming from the framework itself rather than addressing domain-specific challenges. With over the decade of collective experience across various startups and companies, we can assure you that our framework is crafted from tackling real-world obstacles, not just abstract theory converted into code.
 
 So let's get started!
 
@@ -33,13 +22,13 @@ Check [This link](https://learn.microsoft.com/en-us/visualstudio/ide/file-nestin
 Open powershell or command prompt and execute the following command:
 
  ```
-dotnet new install Bobby.CleanArcTemplate
+dotnet new install GangOfDev.CleanArcTemplate
  ```
  
  Create an empty folder. Navigate to it via Powershell or CMD and then execute the following command:
  
   ```
-dotnet new ca-template
+dotnet new MySolution
  ```
 Your project is created and ready to code! 
 
@@ -61,7 +50,7 @@ dotnet dev-certs https --trust
 Navigate to the project directory and run the following command using your prefered terminal:
 
 ```
- docker build -t bobby-cleanarc -f dockerfile.
+ docker build -t MySolution -f dockerfile.
 ```
 
 and lastly run the following command ( Note that this command will pull the latest SQL Server 2022 image from docker hub):
@@ -74,7 +63,7 @@ docker-compose up -d
 ## Clean Architecture. Our Expectations
 When you search the **"Clean Architecture"** keyword on google, the first thing that comes in search results is the graph below. But what does it say exactly?
 
-![](https://i.ibb.co/vxpLVCp/Clean-Architecture-Diagram2.webp)
+![](https://github.com/gangofdev/Clean-Architecture-Template/resources/img/Clean Architecture Diagram.png)
 
 ### Domain Layer 
  Our **core** (or **"Domain"**) becomes completely **isolated** and changes in other layers won't affect our core services and logics.
@@ -157,11 +146,12 @@ But you don't need to worry about any of it. I've done the most work for you! (T
 
 ## Final Words
 
-Personally I love this framework and use it in many of my personal projects and it hasn't let me down yet. I casually update this repo (whether it's a package update, code refactor or adding new features). So feel free to create issues or create pull requests. I will check them.
 
 If you like this framework , just give it a star. Your star keeps me motivated to maintain this repo and develop new open source and exciting packages for it. Thanks in advance!
 
 ## Code Inspirations
+
+[ Babak Taremi Clean architecture boiler plate](https://github.com/babaktaremi/Clean-Architecture-Template)
 
 [ MJ Ebrahimi Complete Web API Repo](https://github.com/mjebrahimi/AspNetCore-WebApi-Course)
 
