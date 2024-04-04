@@ -15,8 +15,14 @@ using CleanArc.WebFramework.ServiceConfiguration;
 using CleanArc.WebFramework.Swagger;
 using Serilog;
 using System.Diagnostics;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("appsettings.json")
+                                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true)
+                                .AddEnvironmentVariables()
+                                .AddUserSecrets(Assembly.GetEntryAssembly()!);
 
 builder.Host.UseSerilog(LoggingConfiguration.ConfigureLogger);
 

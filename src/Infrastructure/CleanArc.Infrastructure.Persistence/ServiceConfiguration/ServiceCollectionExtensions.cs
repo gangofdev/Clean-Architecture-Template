@@ -9,14 +9,15 @@ namespace CleanArc.Infrastructure.Persistence.ServiceConfiguration;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddPersistenceServices(this IServiceCollection services,IConfiguration configuration)
+    public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options
-                .UseSqlServer(configuration.GetConnectionString("SqlServer"));
+            //options
+            //    .UseSqlServer(configuration.GetConnectionString("SqlServer"));
+            options.UseInMemoryDatabase("InMemoryDb");
         });
 
         return services;
@@ -30,6 +31,9 @@ public static class ServiceCollectionExtensions
         if (context is null)
             throw new Exception("Database Context Not Found");
 
-        await context.Database.MigrateAsync();
+        if (context.Database.ProviderName.Split(".").Last() != nameof(Microsoft.EntityFrameworkCore.InMemory))
+        {
+            await context.Database.MigrateAsync();
+        }
     }
 }
