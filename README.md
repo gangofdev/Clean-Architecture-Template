@@ -63,7 +63,7 @@ docker-compose up -d
 ## Clean Architecture. Our Expectations
 When you search the **"Clean Architecture"** keyword on google, the first thing that comes in search results is the graph below. But what does it say exactly?
 
-![](https://github.com/gangofdev/Clean-Architecture-Template/resources/img/Clean Architecture Diagram.png)
+![](https://github.com/gangofdev/Clean-Architecture-Template/blob/clean-up/resources/img/Clean%20Architecture%20Diagram.png)
 
 ### Domain Layer 
  Our **core** (or **"Domain"**) becomes completely **isolated** and changes in other layers won't affect our core services and logics.
