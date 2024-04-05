@@ -1,11 +1,4 @@
-﻿using CleanArc.Domain.Entities.User;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-
-namespace CleanArc.Infrastructure.Identity.Identity.Manager;
+﻿namespace CleanArc.Infrastructure.Identity.Identity.Manager;
 
 public class AppSignInManager : SignInManager<User>
 {

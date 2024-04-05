@@ -5,7 +5,7 @@ using CleanArc.SharedKernel.ValidationBase.Contracts;
 using FluentValidation;
 using Mediator;
 
-namespace CleanArc.Application.Features.Users.Commands.RefreshUserTokenCommand;
+namespace CleanArc.Application.Features.Connect.Commands.RefreshUserTokenCommand;
 
 public record RefreshUserTokenCommand(Guid RefreshToken) : IRequest<OperationResult<AccessToken>>,
     IValidatableModel<RefreshUserTokenCommand>

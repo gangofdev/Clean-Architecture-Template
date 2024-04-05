@@ -1,5 +1,4 @@
-﻿using CleanArc.Domain.Entities.User;
-using CleanArc.Infrastructure.Identity.Identity.Manager;
+﻿using CleanArc.Infrastructure.Identity.Identity.Manager;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArc.Infrastructure.Identity.Identity.SeedDatabaseService;
@@ -40,7 +39,7 @@ public class SeedDataBase : ISeedDataBase
                 PhoneNumberConfirmed = true
             };
 
-            await  _userManager.CreateAsync(user, "qw123321");
+            await  _userManager.CreateAsync(user, "qwerty123!");
             await _userManager.AddToRoleAsync(user,"admin");
         }
     }

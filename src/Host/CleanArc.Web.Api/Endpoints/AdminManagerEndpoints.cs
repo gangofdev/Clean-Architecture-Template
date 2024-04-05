@@ -1,6 +1,5 @@
 ﻿using Carter;
 using CleanArc.Application.Features.Admin.Commands.AddAdminCommand;
-using CleanArc.Application.Features.Admin.Queries.GetToken;
 using CleanArc.WebFramework.WebExtensions;
 using Mediator;
 
@@ -15,19 +14,11 @@ public class AdminManagerEndpoints : ICarterModule
     public void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapEndpoint(
-            builder => builder.MapPost($"{_routePrefix}Login"
-                , async (AdminGetTokenQuery model, ISender sender) => (await sender.Send(model)).ToEndpointResult())
-                , _version
-                ,"AdminLogin"
-                ,_tag);
-
-
-        app.MapEndpoint(
-            builder => builder.MapPost($"{_routePrefix}NewAdmin"
-                , async (AddAdminCommand model, ISender sender) => (await sender.Send(model)).ToEndpointResult())
-            , _version
-            , "AddAdmin"
-            , _tag)
-            .RequireAuthorization(builder => builder.RequireRole("admin"));
+      builder => builder.MapPost($"{_routePrefix}NewAdmin"
+          , async (AddAdminCommand model, ISender sender) => (await sender.Send(model)).ToEndpointResult())
+      , _version
+      , "AddAdmin"
+      , _tag)
+      .RequireAuthorization(builder => builder.RequireRole("admin"));
     }
 }

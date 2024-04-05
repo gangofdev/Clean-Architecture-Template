@@ -1,5 +1,4 @@
 ﻿using CleanArc.Application.Features.Admin.Commands.AddAdminCommand;
-using CleanArc.Application.Features.Admin.Queries.GetToken;
 namespace CleanArc.Web.Api.Controllers.V1.Admin
 {
     [ApiVersion("1")]
@@ -7,13 +6,7 @@ namespace CleanArc.Web.Api.Controllers.V1.Admin
     [Route("api/v{version:apiVersion}/AdminManager")]
     public class AdminManagerController(ISender sender) : BaseController
     {
-        [HttpPost("Login")]
-        public async Task<IActionResult> AdminLogin(AdminGetTokenQuery model)
-        {
-            var query = await sender.Send(model);
-
-            return base.OperationResult(query);
-        }
+       
 
         [Authorize(Roles = "admin")]
         [HttpPost("NewAdmin")]

@@ -1,8 +1,4 @@
-﻿using System.Security.Cryptography;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-
-namespace CleanArc.Infrastructure.Identity.Identity.DataProtection;
+﻿namespace CleanArc.Infrastructure.Identity.Identity.DataProtection;
 
 public class KeyRing : ILookupProtectorKeyRing
 {

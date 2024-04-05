@@ -61,7 +61,7 @@ public class JwtService : IJwtService
         var refreshToken = await _unitOfWork.UserRefreshTokenRepository.CreateToken(user.Id);
         await _unitOfWork.CommitAsync();
 
-        return new AccessToken(securityToken,refreshToken.ToString());
+        return new AccessToken(securityToken, refreshToken.ToString());
     }
 
     public Task<ClaimsPrincipal> GetPrincipalFromExpiredToken(string token)
@@ -96,7 +96,7 @@ public class JwtService : IJwtService
     public async Task<AccessToken> RefreshToken(Guid refreshTokenId)
     {
         var refreshToken = await _unitOfWork.UserRefreshTokenRepository.GetTokenWithInvalidation(refreshTokenId);
-            
+
         if (refreshToken is null)
             return null;
 

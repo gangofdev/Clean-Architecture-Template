@@ -4,6 +4,7 @@ using CleanArc.Application.Models.Common;
 using CleanArc.Application.Models.Jwt;
 using CleanArc.SharedKernel.Extensions;
 using Mediator;
+using Microsoft.AspNetCore.Identity;
 
 namespace CleanArc.Application.Features.Users.Queries.GenerateUserToken;
 
@@ -26,9 +27,15 @@ internal class GenerateUserTokenQueryHandler : IRequestHandler<GenerateUserToken
         if (user is null)
             return OperationResult<AccessToken>.FailureResult("User Not found");
 
-        var result = user.PhoneNumberConfirmed? await _userManager.VerifyUserCode(
-            user, request.Code):await _userManager.ChangePhoneNumber(user,user.PhoneNumber,request.Code);
-
+        var result = new IdentityResult();
+        if (user.PhoneNumberConfirmed)
+        {
+            result = await _userManager.VerifyUserCode(user, request.Code);
+        }
+        else
+        {
+            result = await _userManager.ChangePhoneNumber(user, user.PhoneNumber, request.Code);
+        }
 
         if (!result.Succeeded)
             return OperationResult<AccessToken>.FailureResult(result.Errors.StringifyIdentityResultErrors());

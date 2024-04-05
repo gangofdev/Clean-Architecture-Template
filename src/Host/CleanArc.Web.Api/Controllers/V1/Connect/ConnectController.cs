@@ -1,12 +1,13 @@
 ﻿using CleanArc.Application.Features.Users.Commands.Create;
-using CleanArc.Application.Features.Users.Commands.RefreshUserTokenCommand;
-using CleanArc.Application.Features.Users.Commands.RequestLogout;
-using CleanArc.Application.Features.Users.Queries.GenerateUserToken;
+using CleanArc.Application.Features.Connect.Commands.RefreshUserTokenCommand;
 using CleanArc.Application.Features.Users.Queries.TokenRequest;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using CleanArc.Application.Features.Connect.Commands.Create;
+using CleanArc.Application.Features.Connect.Queries.GetToken;
+using CleanArc.Application.Features.Connect.Commands.RequestLogout;
 
-namespace CleanArc.Web.Api.Controllers.V1.UserManagement;
+namespace CleanArc.Web.Api.Controllers.V1.Connect;
 
 [ApiVersion("1")]
 [ApiController]
@@ -21,7 +22,7 @@ public class ConnectController : BaseController
     }
 
     [HttpPost("Register")]
-    public async Task<IActionResult> CreateUser(UserCreateCommand model)
+    public async Task<IActionResult> CreateUser(SignupCommand model)
     {
         var command = await _mediator.Send(model);
 
@@ -29,21 +30,14 @@ public class ConnectController : BaseController
     }
 
 
-    [HttpPost("TokenRequest")]
-    public async Task<IActionResult> TokenRequest(UserTokenRequestQuery model)
+    [HttpPost("Token")]
+    public async Task<IActionResult> TokenRequest(GetTokenQuery model)
     {
         var query = await _mediator.Send(model);
 
         return base.OperationResult(query);
     }
 
-    [HttpPost("LoginConfirmation")]
-    public async Task<IActionResult> ValidateUser(GenerateUserTokenQuery model)
-    {
-        var result = await _mediator.Send(model);
-
-        return base.OperationResult(result);
-    }
 
     [HttpPost("RefreshSignIn")]
     [RequireTokenWithoutAuthorization]

@@ -4,19 +4,19 @@ using CleanArc.Application.Models.Common;
 using CleanArc.Application.Models.Jwt;
 using Mediator;
 
-namespace CleanArc.Application.Features.Admin.Queries.GetToken;
+namespace CleanArc.Application.Features.Connect.Queries.GetToken;
 
-public class AdminGetTokenQueryHandler:IRequestHandler<AdminGetTokenQuery,OperationResult<AccessToken>>
+public class GetTokenQueryHandler:IRequestHandler<GetTokenQuery,OperationResult<AccessToken>>
 {
     private readonly IAppUserManager _userManager;
     private readonly IJwtService _jwtService;
-    public AdminGetTokenQueryHandler(IAppUserManager userManager, IJwtService jwtService)
+    public GetTokenQueryHandler(IAppUserManager userManager, IJwtService jwtService)
     {
         _userManager = userManager;
         _jwtService = jwtService;
     }
 
-    public async ValueTask<OperationResult<AccessToken>> Handle(AdminGetTokenQuery request, CancellationToken cancellationToken)
+    public async ValueTask<OperationResult<AccessToken>> Handle(GetTokenQuery request, CancellationToken cancellationToken)
     {
         var user = await _userManager.GetByUserName(request.UserName);
 

@@ -5,12 +5,12 @@ using CleanArc.SharedKernel.ValidationBase.Contracts;
 using FluentValidation;
 using Mediator;
 
-namespace CleanArc.Application.Features.Admin.Queries.GetToken;
+namespace CleanArc.Application.Features.Connect.Queries.GetToken;
 
-public record AdminGetTokenQuery(string UserName, string Password) : IRequest<OperationResult<AccessToken>>,
-    IValidatableModel<AdminGetTokenQuery>
+public record GetTokenQuery(string UserName, string Password) : IRequest<OperationResult<AccessToken>>,
+    IValidatableModel<GetTokenQuery>
 {
-    public IValidator<AdminGetTokenQuery> ValidateApplicationModel(ApplicationBaseValidationModelProvider<AdminGetTokenQuery> validator)
+    public IValidator<GetTokenQuery> ValidateApplicationModel(ApplicationBaseValidationModelProvider<GetTokenQuery> validator)
     {
         validator.RuleFor(c => c.UserName)
             .NotEmpty()

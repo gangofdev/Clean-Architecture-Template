@@ -37,7 +37,6 @@ internal class UserCreateCommandHandler : IRequestHandler<UserCreateCommand, Ope
         var user = _mapper.Map<User>(request);
 
         var createResult = await _userManager.CreateUser(user);
-
         if (!createResult.Succeeded)
         {
             return OperationResult<UserCreateCommandResult>.FailureResult(string.Join(",", createResult.Errors.Select(c => c.Description)));

@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace CleanArc.Infrastructure.Identity.Identity.DataProtection;
+﻿namespace CleanArc.Infrastructure.Identity.Identity.DataProtection;
 
 public enum ProtectorAlgorithm
 {

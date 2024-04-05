@@ -5,7 +5,7 @@ using CleanArc.Infrastructure.Identity.Identity.Dtos;
 using CleanArc.Infrastructure.Identity.Jwt;
 using CleanArc.Infrastructure.Identity.ServiceConfiguration;
 using CleanArc.Infrastructure.Persistence.ServiceConfiguration;
-using CleanArc.Web.Api.Controllers.V1.UserManagement;
+using CleanArc.Web.Api.Controllers.V1.Connect;
 using CleanArc.Web.Plugins.Grpc;
 using CleanArc.WebFramework.Filters;
 using CleanArc.WebFramework.Middlewares;

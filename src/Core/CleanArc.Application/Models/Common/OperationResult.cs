@@ -8,6 +8,12 @@ public class OperationResult<TResult>
     public string ErrorMessage { get; private set; }
     public bool IsException { get; set; }
     public bool IsNotFound { get; private set; }
+
+    public static implicit operator OperationResult<TResult>(TResult result)
+    {
+        return SuccessResult(result);
+    }
+
     public static OperationResult<TResult> SuccessResult(TResult result)
     {
         return new OperationResult<TResult>{Result = result,IsSuccess = true};

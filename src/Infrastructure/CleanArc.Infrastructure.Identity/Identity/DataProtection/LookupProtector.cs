@@ -1,9 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Text;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.AspNetCore.Identity;
-
+﻿
 namespace CleanArc.Infrastructure.Identity.Identity.DataProtection;
 
 public class LookupProtector : ILookupProtector

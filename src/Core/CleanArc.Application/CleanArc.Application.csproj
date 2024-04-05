@@ -19,5 +19,8 @@
     <PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Admin\Queries\" />
+  </ItemGroup>
 
 </Project>

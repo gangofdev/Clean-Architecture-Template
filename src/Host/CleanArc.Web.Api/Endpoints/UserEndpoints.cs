@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using Carter;
 using CleanArc.Application.Features.Users.Commands.Create;
-using CleanArc.Application.Features.Users.Commands.RefreshUserTokenCommand;
+using CleanArc.Application.Features.Connect.Commands.RefreshUserTokenCommand;
 using CleanArc.Application.Features.Users.Commands.RequestLogout;
 using CleanArc.Application.Features.Users.Queries.GenerateUserToken;
 using CleanArc.Application.Features.Users.Queries.TokenRequest;

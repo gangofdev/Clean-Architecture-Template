@@ -11,7 +11,7 @@ using CleanArc.Infrastructure.Identity.Identity.Manager;
 using CleanArc.Infrastructure.Identity.Identity.PermissionManager;
 using CleanArc.Infrastructure.Identity.Identity.SeedDatabaseService;
 using CleanArc.Infrastructure.Identity.Identity.Store;
-using CleanArc.Infrastructure.Identity.Identity.validator;
+using CleanArc.Infrastructure.Identity.Identity.Validator;
 using CleanArc.Infrastructure.Identity.Jwt;
 using CleanArc.Infrastructure.Identity.UserManager;
 using CleanArc.SharedKernel.Extensions;

@@ -3,7 +3,7 @@ using CleanArc.Application.Models.Common;
 using CleanArc.Application.Models.Jwt;
 using Mediator;
 
-namespace CleanArc.Application.Features.Users.Commands.RefreshUserTokenCommand
+namespace CleanArc.Application.Features.Connect.Commands.RefreshUserTokenCommand
 {
     internal class RefreshUserTokenCommandHandler : IRequestHandler<RefreshUserTokenCommand,OperationResult<AccessToken>>
     {

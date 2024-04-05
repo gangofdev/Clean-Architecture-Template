@@ -1,7 +1,7 @@
 ﻿using CleanArc.Domain.Entities.User;
 using Microsoft.AspNetCore.Identity;
 
-namespace CleanArc.Infrastructure.Identity.Identity.validator;
+namespace CleanArc.Infrastructure.Identity.Identity.Validator;
 
 public class AppUserValidator:UserValidator<User>
 {

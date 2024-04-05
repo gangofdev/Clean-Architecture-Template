@@ -2,7 +2,7 @@
 
 namespace CleanArc.Infrastructure.Identity.Identity;
 
-public class AppErrorDescriber:IdentityErrorDescriber
+public class AppErrorDescriber : IdentityErrorDescriber
 {
     public override IdentityError DefaultError()
     {
@@ -69,7 +69,7 @@ public class AppErrorDescriber:IdentityErrorDescriber
 
     public override IdentityError InvalidToken()
     {
-            
+
         return new IdentityError
         {
             Code = nameof(InvalidToken),
