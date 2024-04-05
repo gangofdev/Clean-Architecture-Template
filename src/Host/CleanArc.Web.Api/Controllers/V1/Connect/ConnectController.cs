@@ -1,17 +1,10 @@
-﻿using Asp.Versioning;
-using CleanArc.Application.Features.Users.Commands.Create;
+﻿using CleanArc.Application.Features.Users.Commands.Create;
 using CleanArc.Application.Features.Users.Commands.RefreshUserTokenCommand;
 using CleanArc.Application.Features.Users.Commands.RequestLogout;
 using CleanArc.Application.Features.Users.Queries.GenerateUserToken;
 using CleanArc.Application.Features.Users.Queries.TokenRequest;
-using CleanArc.WebFramework.BaseController;
-using CleanArc.WebFramework.Swagger;
-using CleanArc.WebFramework.WebExtensions;
-using Mediator;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArc.Web.Api.Controllers.V1.UserManagement;
 

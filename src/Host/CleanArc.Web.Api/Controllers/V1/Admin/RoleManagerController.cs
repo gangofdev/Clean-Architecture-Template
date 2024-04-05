@@ -1,15 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Asp.Versioning;
-using CleanArc.Application.Features.Role.Commands.AddRoleCommand;
+﻿using CleanArc.Application.Features.Role.Commands.AddRoleCommand;
 using CleanArc.Application.Features.Role.Commands.UpdateRoleClaimsCommand;
 using CleanArc.Application.Features.Role.Queries.GetAllRolesQuery;
 using CleanArc.Application.Features.Role.Queries.GetAuthorizableRoutesQuery;
 using CleanArc.Infrastructure.Identity.Identity.PermissionManager;
-using CleanArc.WebFramework.BaseController;
-using CleanArc.WebFramework.WebExtensions;
-using Mediator;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArc.Web.Api.Controllers.V1.Admin
 {

@@ -1,4 +1,3 @@
-using Carter;
 using CleanArc.Application.ServiceConfiguration;
 using CleanArc.Domain.Entities.User;
 using CleanArc.Infrastructure.CrossCutting.Logging;
@@ -11,9 +10,7 @@ using CleanArc.Web.Plugins.Grpc;
 using CleanArc.WebFramework.Filters;
 using CleanArc.WebFramework.Middlewares;
 using CleanArc.WebFramework.ServiceConfiguration;
-using CleanArc.WebFramework.Swagger;
-using System.Diagnostics;
-using System.Reflection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

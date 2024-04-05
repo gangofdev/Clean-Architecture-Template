@@ -1,12 +1,5 @@
-﻿using CleanArc.Infrastructure.Identity.Identity.PermissionManager;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using Asp.Versioning;
-using CleanArc.Application.Features.Users.Queries.GetUsers;
-using CleanArc.WebFramework.BaseController;
-using CleanArc.WebFramework.WebExtensions;
-using Mediator;
+﻿using CleanArc.Application.Features.Users.Queries.GetUsers;
+using CleanArc.Infrastructure.Identity.Identity.PermissionManager;
 
 namespace CleanArc.Web.Api.Controllers.V1.Admin
 {

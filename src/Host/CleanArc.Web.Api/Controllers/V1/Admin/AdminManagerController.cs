@@ -1,12 +1,5 @@
-﻿using Asp.Versioning;
-using CleanArc.Application.Features.Admin.Commands.AddAdminCommand;
+﻿using CleanArc.Application.Features.Admin.Commands.AddAdminCommand;
 using CleanArc.Application.Features.Admin.Queries.GetToken;
-using CleanArc.WebFramework.BaseController;
-using CleanArc.WebFramework.WebExtensions;
-using Mediator;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
 namespace CleanArc.Web.Api.Controllers.V1.Admin
 {
     [ApiVersion("1")]

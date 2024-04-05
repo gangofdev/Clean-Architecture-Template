@@ -1,19 +1,13 @@
-﻿using CleanArc.Infrastructure.Identity.Identity.PermissionManager;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using Asp.Versioning;
-using CleanArc.Application.Features.Order.Queries.GetAllOrders;
-using CleanArc.WebFramework.BaseController;
-using CleanArc.WebFramework.WebExtensions;
-using Mediator;
+﻿using CleanArc.Application.Features.Order.Queries.GetAllOrders;
+using CleanArc.Infrastructure.Identity.Identity.PermissionManager;
+
 
 namespace CleanArc.Web.Api.Controllers.V1.Admin
 {
     [ApiVersion("1")]
     [ApiController]
     [Route("api/v{version:apiVersion}/OrderManagement")]
-    [Display(Description= "Managing Users related Orders")]
+    [Display(Description = "Managing Users related Orders")]
     [Authorize(ConstantPolicies.DynamicPermission)]
     public class OrderManagementController : BaseController
     {
