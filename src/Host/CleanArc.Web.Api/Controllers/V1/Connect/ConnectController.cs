@@ -17,12 +17,12 @@ namespace CleanArc.Web.Api.Controllers.V1.UserManagement;
 
 [ApiVersion("1")]
 [ApiController]
-[Route("api/v{version:apiVersion}/User")]
-public class UserController : BaseController
+[Route("api/v{version:apiVersion}/Connect")]
+public class ConnectController : BaseController
 {
     private readonly IMediator _mediator;
 
-    public UserController(IMediator mediator)
+    public ConnectController(IMediator mediator)
     {
         _mediator = mediator;
     }

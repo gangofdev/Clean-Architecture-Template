@@ -6,14 +6,12 @@ using CleanArc.Infrastructure.Identity.Identity.Dtos;
 using CleanArc.Infrastructure.Identity.Jwt;
 using CleanArc.Infrastructure.Identity.ServiceConfiguration;
 using CleanArc.Infrastructure.Persistence.ServiceConfiguration;
-using CleanArc.SharedKernel.Extensions;
 using CleanArc.Web.Api.Controllers.V1.UserManagement;
 using CleanArc.Web.Plugins.Grpc;
 using CleanArc.WebFramework.Filters;
 using CleanArc.WebFramework.Middlewares;
 using CleanArc.WebFramework.ServiceConfiguration;
 using CleanArc.WebFramework.Swagger;
-using Serilog;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -70,7 +68,7 @@ builder.Services.ConfigureGrpcPluginServices();
 
 builder.Services.AddAutoMapper(expression =>
 {
-    expression.AddMaps(typeof(User), typeof(JwtService), typeof(UserController));
+    expression.AddMaps(typeof(User), typeof(JwtService), typeof(ConnectController));
 });
 
 var app = builder.Build();

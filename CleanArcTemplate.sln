@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{42CAB060-5D50-4E18-8F85-EBA5EB85B268}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{0E679B58-1D8A-4F5B-8838-6E4DD9258215}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{0E679B58-1D8A-4F5B-8838-6E4DD9258215}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0E86739A-769C-4597-84D3-7D53BA1D1E3C}"
 EndProject
@@ -27,21 +27,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Application", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Domain", "src\Core\CleanArc.Domain\CleanArc.Domain.csproj", "{DC49CD3F-840E-4634-B9DA-595F160E9499}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Web.Plugins.Grpc", "src\API\Plugins\CleanArc.Web.Plugins.Grpc\CleanArc.Web.Plugins.Grpc.csproj", "{8F7135E8-68C9-4DA8-AA06-04518EBB403B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Web.Plugins.Grpc", "src\Host\Plugins\CleanArc.Web.Plugins.Grpc\CleanArc.Web.Plugins.Grpc.csproj", "{8F7135E8-68C9-4DA8-AA06-04518EBB403B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Web.Api", "src\API\CleanArc.Web.Api\CleanArc.Web.Api.csproj", "{BE13FF32-B8D5-4AE7-B173-6CA96040B788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Web.Api", "src\Host\CleanArc.Web.Api\CleanArc.Web.Api.csproj", "{BE13FF32-B8D5-4AE7-B173-6CA96040B788}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.WebFramework", "src\API\CleanArc.WebFramework\CleanArc.WebFramework.csproj", "{44DD0A96-BA65-476E-BC59-C8D2CFA703B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.WebFramework", "src\Host\CleanArc.WebFramework\CleanArc.WebFramework.csproj", "{44DD0A96-BA65-476E-BC59-C8D2CFA703B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{77986571-8153-4120-AD08-36729310A56B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BaseSetup", "BaseSetup", "{34B1F72E-A991-4705-ACC5-08E65E46D26E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArc.Tests.Setup", "src\Tests\CleanArc.Tests.Setup\CleanArc.Tests.Setup.csproj", "{33AF382A-9E22-42F0-82E5-4F78BCFD40C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Tests.Setup", "src\Tests\CleanArc.Tests.Setup\CleanArc.Tests.Setup.csproj", "{33AF382A-9E22-42F0-82E5-4F78BCFD40C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{45FA88C0-9986-40E5-A2E2-7742302518D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArc.Test.Infrastructure.Identity", "src\Tests\CleanArc.Test.Infrastructure.Identity\CleanArc.Test.Infrastructure.Identity\CleanArc.Test.Infrastructure.Identity.csproj", "{54203B4F-3CE8-4EBA-B5E2-F7C985FACE60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Test.Infrastructure.Identity", "src\Tests\CleanArc.Test.Infrastructure.Identity\CleanArc.Test.Infrastructure.Identity\CleanArc.Test.Infrastructure.Identity.csproj", "{54203B4F-3CE8-4EBA-B5E2-F7C985FACE60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
