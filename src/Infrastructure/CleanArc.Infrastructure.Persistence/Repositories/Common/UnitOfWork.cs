@@ -1,4 +1,4 @@
-﻿using CleanArc.Application.Contracts.Persistence;
+﻿using CleanArc.Domain.Contracts.Persistence;
 
 namespace CleanArc.Infrastructure.Persistence.Repositories.Common;
 

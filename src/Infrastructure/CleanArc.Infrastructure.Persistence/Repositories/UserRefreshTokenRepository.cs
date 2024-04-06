@@ -1,4 +1,4 @@
-﻿using CleanArc.Application.Contracts.Persistence;
+﻿using CleanArc.Domain.Contracts.Persistence;
 using CleanArc.Domain.Entities.User;
 using CleanArc.Infrastructure.Persistence.Repositories.Common;
 using Microsoft.EntityFrameworkCore;

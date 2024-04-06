@@ -1,7 +1,7 @@
 ﻿using CleanArc.Domain.Entities.User;
 using Microsoft.AspNetCore.Identity;
 
-namespace CleanArc.Application.Contracts.Identity;
+namespace CleanArc.Domain.Contracts.Identity;
 
 public interface IAppUserManager
 {

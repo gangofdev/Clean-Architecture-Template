@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CleanArc.Application.Models.Jwt;
+namespace CleanArc.Domain.Models.Jwt;
 
 public class TokenRequest
 {

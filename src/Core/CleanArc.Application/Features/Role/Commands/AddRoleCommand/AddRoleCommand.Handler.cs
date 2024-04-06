@@ -1,7 +1,8 @@
-﻿using CleanArc.Application.Contracts.Identity;
+﻿using CleanArc.Domain.Contracts.Identity;
 using CleanArc.Application.Models.Common;
 using CleanArc.Application.Models.Identity;
 using Mediator;
+using CleanArc.Domain.Models.Role;
 
 namespace CleanArc.Application.Features.Role.Commands.AddRoleCommand
 {
@@ -17,7 +18,7 @@ namespace CleanArc.Application.Features.Role.Commands.AddRoleCommand
         public async ValueTask<OperationResult<bool>> Handle(AddRoleCommand request, CancellationToken cancellationToken)
         {
             var addRoleResult =
-                await _roleManagerService.CreateRoleAsync(new CreateRoleDto() { RoleName = request.RoleName });
+                await _roleManagerService.CreateRoleAsync(new NewRole() { RoleName = request.RoleName });
 
             if (addRoleResult.Succeeded)
                 return OperationResult<bool>.SuccessResult(true);

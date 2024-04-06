@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using CleanArc.Application.Contracts.Identity;
+using CleanArc.Domain.Contracts.Identity;
 using CleanArc.Application.Models.Common;
 using CleanArc.Domain.Entities.User;
 using Mediator;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArc.Application.Features.Connect.Commands.Create;

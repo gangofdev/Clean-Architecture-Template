@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CleanArc.Application.Contracts.Identity;
+using CleanArc.Domain.Contracts.Identity;
 using CleanArc.Application.Models.Common;
 using Mediator;
 

@@ -1,3 +1,4 @@
+using CleanArc.Application.Models.Common;
 using CleanArc.Application.ServiceConfiguration;
 using CleanArc.Domain.Entities.User;
 using CleanArc.Infrastructure.CrossCutting.Logging;
@@ -65,7 +66,7 @@ builder.Services.ConfigureGrpcPluginServices();
 
 builder.Services.AddAutoMapper(expression =>
 {
-    expression.AddMaps(typeof(User), typeof(JwtService), typeof(ConnectController));
+    expression.AddMaps(typeof(User), typeof(JwtService), typeof(ConnectController),typeof(OperationResult<>));
 });
 
 var app = builder.Build();

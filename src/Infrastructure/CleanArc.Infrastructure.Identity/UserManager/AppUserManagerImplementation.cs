@@ -1,4 +1,4 @@
-﻿using CleanArc.Application.Contracts.Identity;
+﻿using CleanArc.Domain.Contracts.Identity;
 using CleanArc.Domain.Entities.User;
 using CleanArc.Infrastructure.Identity.Identity.Dtos;
 using CleanArc.Infrastructure.Identity.Identity.Manager;

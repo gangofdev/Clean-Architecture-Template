@@ -1,6 +1,6 @@
-﻿using CleanArc.Application.Contracts;
-using CleanArc.Application.Contracts.Identity;
-using CleanArc.Application.Contracts.Persistence;
+﻿using CleanArc.Domain.Contracts;
+using CleanArc.Domain.Contracts.Identity;
+using CleanArc.Domain.Contracts.Persistence;
 using CleanArc.Domain.Entities.User;
 using CleanArc.Infrastructure.Identity.Identity;
 using CleanArc.Infrastructure.Identity.Identity.Dtos;

@@ -1,6 +1,6 @@
 using CleanArc.Application.Features.Connect.Commands.Create;
 using CleanArc.Application.Features.Connect.Queries.GetToken;
-using CleanArc.Application.Models.Jwt;
+using CleanArc.Domain.Models.Jwt;
 using CleanArc.Web.Api.Controllers.V1.Connect;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;

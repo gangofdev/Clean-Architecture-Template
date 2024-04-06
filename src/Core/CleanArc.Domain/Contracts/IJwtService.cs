@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
-using CleanArc.Application.Models.Jwt;
+using CleanArc.Domain.Models.Jwt;
 using CleanArc.Domain.Entities.User;
 
-namespace CleanArc.Application.Contracts;
+namespace CleanArc.Domain.Contracts;
 
 public interface IJwtService
 {

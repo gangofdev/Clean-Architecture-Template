@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CleanArc.Application.Contracts.Identity;
+using CleanArc.Domain.Contracts.Identity;
 using CleanArc.Application.Models.Common;
 using CleanArc.Domain.Entities.User;
 using Mediator;

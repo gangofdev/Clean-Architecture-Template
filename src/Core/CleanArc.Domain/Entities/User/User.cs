@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CleanArc.Domain.Entities.User;
 
-public class User:IdentityUser<int>,IEntity
+public class User : IdentityUser<int>, IEntity
 {
     public User()
     {
@@ -13,7 +13,7 @@ public class User:IdentityUser<int>,IEntity
     public string Name { get; set; }
     public string FamilyName { get; set; }
     public string GeneratedCode { get; set; }
-       
+
     public ICollection<UserRole> UserRoles { get; set; }
     public ICollection<UserLogin> Logins { get; set; }
     public ICollection<UserClaim> Claims { get; set; }

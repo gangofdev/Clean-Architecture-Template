@@ -1,4 +1,4 @@
-﻿namespace CleanArc.Application.Contracts.Persistence;
+﻿namespace CleanArc.Domain.Contracts.Persistence;
 
 public interface IUnitOfWork
 {

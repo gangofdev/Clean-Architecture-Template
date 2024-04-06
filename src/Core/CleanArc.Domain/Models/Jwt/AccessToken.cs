@@ -1,6 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 
-namespace CleanArc.Application.Models.Jwt;
+namespace CleanArc.Domain.Models.Jwt;
 
 public class AccessToken
 {

@@ -1,6 +1,6 @@
 ﻿using CleanArc.Domain.Entities.Order;
 
-namespace CleanArc.Application.Contracts.Persistence;
+namespace CleanArc.Domain.Contracts.Persistence;
 
 public interface IOrderRepository
 {

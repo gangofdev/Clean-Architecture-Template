@@ -1,7 +1,8 @@
-﻿using CleanArc.Application.Contracts.Identity;
+﻿using CleanArc.Domain.Contracts.Identity;
 using CleanArc.Application.Models.Common;
 using CleanArc.Application.Models.Identity;
 using Mediator;
+using CleanArc.Domain.Models.Role;
 
 namespace CleanArc.Application.Features.Role.Commands.UpdateRoleClaimsCommand
 {
@@ -16,7 +17,7 @@ namespace CleanArc.Application.Features.Role.Commands.UpdateRoleClaimsCommand
 
         public async ValueTask<OperationResult<bool>> Handle(UpdateRoleClaimsCommand request, CancellationToken cancellationToken)
         {
-            var updateRoleResult = await _roleManagerService.ChangeRolePermissionsAsync(new EditRolePermissionsDto()
+            var updateRoleResult = await _roleManagerService.ChangeRolePermissionsAsync(new RolePermissionItem()
                 { RoleId = request.RoleId, Permissions = request.RoleClaimValue });
 
             return updateRoleResult

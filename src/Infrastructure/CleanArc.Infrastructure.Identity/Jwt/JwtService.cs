@@ -1,9 +1,9 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using CleanArc.Application.Contracts;
-using CleanArc.Application.Contracts.Persistence;
-using CleanArc.Application.Models.Jwt;
+using CleanArc.Domain.Contracts;
+using CleanArc.Domain.Contracts.Persistence;
+using CleanArc.Domain.Models.Jwt;
 using CleanArc.Domain.Entities.User;
 using CleanArc.Infrastructure.Identity.Identity.Dtos;
 using CleanArc.Infrastructure.Identity.Identity.Manager;

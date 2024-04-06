@@ -7,8 +7,18 @@
 
   <ItemGroup>
     <Compile Remove="Common\ValidationBase\**" />
+    <Compile Remove="Contracts\Identity\**" />
+    <Compile Remove="Contracts\Persistence\**" />
     <EmbeddedResource Remove="Common\ValidationBase\**" />
+    <EmbeddedResource Remove="Contracts\Identity\**" />
+    <EmbeddedResource Remove="Contracts\Persistence\**" />
     <None Remove="Common\ValidationBase\**" />
+    <None Remove="Contracts\Identity\**" />
+    <None Remove="Contracts\Persistence\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Contracts\IJwtService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CleanArc.Domain\CleanArc.Domain.csproj" />
@@ -20,6 +30,7 @@
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Contracts\" />
     <Folder Include="Features\Admin\Queries\" />
   </ItemGroup>
 
