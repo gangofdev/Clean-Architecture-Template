@@ -1,12 +1,9 @@
-﻿using System.Text.RegularExpressions;
-using CleanArc.Application.Models.Common;
-using CleanArc.Application.Profiles;
+﻿using CleanArc.Application.Profiles;
 using CleanArc.Domain.Entities.User;
 using CleanArc.SharedKernel.ValidationBase;
 using CleanArc.SharedKernel.ValidationBase.Contracts;
 using FluentValidation;
-using Mediator;
-using Microsoft.Extensions.DependencyInjection;
+using System.Text.RegularExpressions;
 
 namespace CleanArc.Application.Features.Connect.Commands.Create;
 

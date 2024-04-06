@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using CleanArc.Application.Models.Common;
 using CleanArc.Application.Profiles;
 using CleanArc.Domain.Entities.User;
 using CleanArc.SharedKernel.ValidationBase;

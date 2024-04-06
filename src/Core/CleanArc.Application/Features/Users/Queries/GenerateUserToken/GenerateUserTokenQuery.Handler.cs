@@ -1,10 +1,7 @@
 ﻿using CleanArc.Domain.Contracts;
 using CleanArc.Domain.Contracts.Identity;
-using CleanArc.Application.Models.Common;
-using CleanArc.SharedKernel.Extensions;
-using Mediator;
-using Microsoft.AspNetCore.Identity;
 using CleanArc.Domain.Models.Jwt;
+using Microsoft.AspNetCore.Identity;
 
 namespace CleanArc.Application.Features.Users.Queries.GenerateUserToken;
 

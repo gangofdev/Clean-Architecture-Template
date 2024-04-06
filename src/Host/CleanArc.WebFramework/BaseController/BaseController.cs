@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using CleanArc.Application.Models.Common;
 using CleanArc.SharedKernel.Extensions;
 using CleanArc.WebFramework.Filters;
 using Microsoft.AspNetCore.Identity;

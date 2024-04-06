@@ -1,5 +1,4 @@
 ﻿using CleanArc.Domain.Contracts.Identity;
-using CleanArc.Application.Models.Common;
 using Mediator;
 using Microsoft.Extensions.Logging;
 

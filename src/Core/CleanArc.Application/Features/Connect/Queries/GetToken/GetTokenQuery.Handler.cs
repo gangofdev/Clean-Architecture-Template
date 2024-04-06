@@ -1,8 +1,6 @@
 ﻿using CleanArc.Domain.Contracts;
 using CleanArc.Domain.Contracts.Identity;
-using CleanArc.Application.Models.Common;
 using CleanArc.Domain.Models.Jwt;
-using Mediator;
 
 namespace CleanArc.Application.Features.Connect.Queries.GetToken;
 

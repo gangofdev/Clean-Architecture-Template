@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using CleanArc.Domain.Contracts.Identity;
-using CleanArc.Application.Models.Common;
 using CleanArc.Domain.Entities.User;
-using Mediator;
 
 namespace CleanArc.Application.Features.Users.Queries.GetUsers;
 

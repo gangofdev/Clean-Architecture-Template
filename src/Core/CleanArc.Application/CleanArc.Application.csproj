@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Compile Remove="Contracts\IJwtService.cs" />
+    <Compile Remove="Models\Common\OperationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CleanArc.Domain\CleanArc.Domain.csproj" />
@@ -32,6 +33,7 @@
   <ItemGroup>
     <Folder Include="Contracts\" />
     <Folder Include="Features\Admin\Queries\" />
+    <Folder Include="Models\Common\" />
   </ItemGroup>
 
 </Project>

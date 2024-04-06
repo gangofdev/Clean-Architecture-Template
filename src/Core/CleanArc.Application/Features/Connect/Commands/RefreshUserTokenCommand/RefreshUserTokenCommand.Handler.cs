@@ -1,7 +1,5 @@
 ﻿using CleanArc.Domain.Contracts;
-using CleanArc.Application.Models.Common;
 using CleanArc.Domain.Models.Jwt;
-using Mediator;
 
 namespace CleanArc.Application.Features.Connect.Commands.RefreshUserTokenCommand
 {

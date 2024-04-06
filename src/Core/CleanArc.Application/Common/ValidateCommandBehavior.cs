@@ -1,8 +1,5 @@
-﻿using System.Text;
-using CleanArc.Application.Models.Common;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
-using Mediator;
 
 namespace CleanArc.Application.Common;
 

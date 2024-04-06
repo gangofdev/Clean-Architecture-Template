@@ -1,12 +1,4 @@
-﻿using CleanArc.Application.Models.Common;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CleanArc.WebFramework.WebExtensions
+﻿namespace CleanArc.WebFramework.WebExtensions
 {
     public static class ActionResultExtensions
     {

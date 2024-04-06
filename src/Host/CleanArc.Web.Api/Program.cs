@@ -1,4 +1,3 @@
-using CleanArc.Application.Models.Common;
 using CleanArc.Application.ServiceConfiguration;
 using CleanArc.Domain.Entities.User;
 using CleanArc.Infrastructure.CrossCutting.Logging;
@@ -51,6 +50,7 @@ builder.Services.AddCarter(configurator: configurator => { configurator.WithEmpt
 
 builder.Services.AddApplicationServices()
     .RegisterIdentityServices(identitySettings)
+    .RegisterCoreServices()
     .AddPersistenceServices(configuration)
     .AddWebFrameworkServices();
 

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CleanArc.Domain.Contracts.Identity;
-using CleanArc.Application.Models.Common;
 using Mediator;
 
 namespace CleanArc.Application.Features.Users.Commands.RequestLogout

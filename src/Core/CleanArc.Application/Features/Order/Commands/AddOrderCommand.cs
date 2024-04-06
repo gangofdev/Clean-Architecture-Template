@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using CleanArc.Application.Models.Common;
 using CleanArc.SharedKernel.ValidationBase;
 using CleanArc.SharedKernel.ValidationBase.Contracts;
 using FluentValidation;

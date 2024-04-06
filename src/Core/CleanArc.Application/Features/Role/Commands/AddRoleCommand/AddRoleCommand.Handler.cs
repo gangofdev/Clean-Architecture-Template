@@ -1,5 +1,4 @@
 ﻿using CleanArc.Domain.Contracts.Identity;
-using CleanArc.Application.Models.Common;
 using CleanArc.Application.Models.Identity;
 using Mediator;
 using CleanArc.Domain.Models.Role;

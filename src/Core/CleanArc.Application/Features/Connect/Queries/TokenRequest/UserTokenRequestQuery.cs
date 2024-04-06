@@ -1,8 +1,6 @@
-﻿using CleanArc.Application.Models.Common;
-using CleanArc.SharedKernel.ValidationBase;
+﻿using CleanArc.SharedKernel.ValidationBase;
 using CleanArc.SharedKernel.ValidationBase.Contracts;
 using FluentValidation;
-using Mediator;
 using System.Text.RegularExpressions;
 
 namespace CleanArc.Application.Features.Connect.Queries.TokenRequest;

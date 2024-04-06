@@ -1,6 +1,4 @@
 ﻿using CleanArc.Domain.Contracts.Persistence;
-using CleanArc.Application.Models.Common;
-using Mediator;
 
 namespace CleanArc.Application.Features.Order.Queries.GetAllOrders
 {
