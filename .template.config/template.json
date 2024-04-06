@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "BabakTaremi",
+  "author": "Gang Of Dev",
   "classifications": [
     "Web",
     "API",
@@ -10,15 +10,19 @@
     "Clean Architecture Solution"
   ],
   "name": "Clean Architecture Solution",
-  "description":  "Ready to develop template based on clean architecture principles. Supports ASP NET Core Identity integrated with JWE tokens, OTP authentication, stand alone plugin development, CQRS pattern using MediatR library and dynamic permission management system out of the box",
-  "identity": "Bobby.CleanArcTemplate.CSharp",
-  "groupIdentity": "Bobby.CleanArcTemplate.Solution",
-  "shortName": "ca-template",
+  "sourceName": "CleanArc",
+  "description": "Ready to develop template based on clean architecture principles. Supports ASP NET Core Identity integrated with JWE tokens, OTP authentication, stand alone plugin development, CQRS pattern using MediatR library and dynamic permission management system out of the box",
+  "identity": "GangofDev.CleanArcTemplate.CSharp",
+  "groupIdentity": "GangofDev.CleanArcTemplate.Solution",
+  "shortName": "gangofdev-cqrs",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "project",
+    "platform": "web",
+    "framework": ".NET Core",
+    "genre": "Web",
+    "architecture": "CQRS"
   },
-  "sourceName": "CleanArcTemplate",
   "preferNameDirectory": true,
   "sources": [
     {
