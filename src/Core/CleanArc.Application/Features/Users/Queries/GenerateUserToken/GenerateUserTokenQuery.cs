@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace CleanArc.Application.Features.Users.Queries.GenerateUserToken;
 
-public record GenerateUserTokenQuery(string UserKey, string Code) : IRequest<OperationResult<AccessToken>>,
+public record GenerateUserTokenQuery(string UserKey, string Code) : IRequest<OperationResult<AccessTokenResponse>>,
     IValidatableModel<GenerateUserTokenQuery>
 {
     public IValidator<GenerateUserTokenQuery> ValidateApplicationModel(ApplicationBaseValidationModelProvider<GenerateUserTokenQuery> validator)

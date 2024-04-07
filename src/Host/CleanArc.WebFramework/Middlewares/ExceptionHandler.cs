@@ -1,10 +1,7 @@
 ﻿using CleanArc.Application.Models.ApiResult;
-using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
-using CleanArc.SharedKernel.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 

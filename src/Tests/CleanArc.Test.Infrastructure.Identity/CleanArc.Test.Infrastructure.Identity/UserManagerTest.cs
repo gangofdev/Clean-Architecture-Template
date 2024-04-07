@@ -18,8 +18,7 @@ namespace CleanArc.Test.Infrastructure.Identity
                 UserName = "Test",
                 Email = "Test@example.com"
             };
-
-            var createUserResult = await base.TestAppUserManager.CreateUser(user);
+            _ = await base.TestAppUserManager.CreateUser(user);
 
             var duplicateCreateUserResult = await base.TestAppUserManager.CreateUser(duplicateUser);
 
@@ -36,7 +35,7 @@ namespace CleanArc.Test.Infrastructure.Identity
                 PhoneNumber = "09123456789"
             };
 
-            var createUserResult = await base.TestAppUserManager.CreateUser(user);
+            _ = await base.TestAppUserManager.CreateUser(user);
 
             var otpCode=await base.TestAppUserManager.GeneratePhoneNumberConfirmationToken(user,user.PhoneNumber);
 
@@ -57,12 +56,10 @@ namespace CleanArc.Test.Infrastructure.Identity
                 Email = "test@example.com",
                 PhoneNumber = "09123456789"
             };
-
-            var createUserResult = await base.TestAppUserManager.CreateUser(user);
+            _ = await base.TestAppUserManager.CreateUser(user);
 
             var phoneNumberConfirmationCode = await base.TestAppUserManager.GeneratePhoneNumberConfirmationToken(user, user.PhoneNumber);
-
-            var confirmPhoneNumberResult = await base.TestAppUserManager.ChangePhoneNumber(user, user.PhoneNumber, phoneNumberConfirmationCode);
+            _ = await base.TestAppUserManager.ChangePhoneNumber(user, user.PhoneNumber, phoneNumberConfirmationCode);
 
             var otpCode = await base.TestAppUserManager.GenerateOtpCode(user);
 
@@ -82,7 +79,7 @@ namespace CleanArc.Test.Infrastructure.Identity
                 PhoneNumber = "09123456789"
             };
 
-            var createUserResult = await base.TestAppUserManager.CreateUser(user);
+            _ = await base.TestAppUserManager.CreateUser(user);
 
             var otpCode = await base.TestAppUserManager.GeneratePhoneNumberConfirmationToken(user, user.PhoneNumber);
 
@@ -90,7 +87,7 @@ namespace CleanArc.Test.Infrastructure.Identity
 
             var token=await base.JwtService.GenerateAsync(user);
 
-            Assert.NotNull(token.access_token);
+            Assert.NotNull(token.AccessToken);
         }
     }
 }

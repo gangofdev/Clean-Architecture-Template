@@ -9,14 +9,9 @@ namespace CleanArc.Web.Api.Controllers.V1.Admin
     [Route("api/v{version:apiVersion}/OrderManagement")]
     [Display(Description = "Managing Users related Orders")]
     [Authorize(ConstantPolicies.DynamicPermission)]
-    public class OrderManagementController : BaseController
+    public class OrderManagementController(ISender sender) : BaseController
     {
-        private readonly ISender _sender;
-
-        public OrderManagementController(ISender sender)
-        {
-            _sender = sender;
-        }
+        private readonly ISender _sender = sender;
 
         [HttpGet("OrderList")]
         public async Task<IActionResult> GetOrders()

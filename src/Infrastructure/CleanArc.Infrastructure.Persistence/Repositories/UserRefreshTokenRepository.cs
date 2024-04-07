@@ -5,12 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArc.Infrastructure.Persistence.Repositories;
 
-internal class UserRefreshTokenRepository : BaseAsyncRepository<UserRefreshToken>, IUserRefreshTokenRepository
+internal class UserRefreshTokenRepository(ApplicationDbContext dbContext) : BaseAsyncRepository<UserRefreshToken>(dbContext), IUserRefreshTokenRepository
 {
-    public UserRefreshTokenRepository(ApplicationDbContext dbContext) : base(dbContext)
-    {
-    }
-
     public async Task<Guid> CreateToken(int userId)
     {
         var token = new UserRefreshToken { IsValid = true, UserId = userId };

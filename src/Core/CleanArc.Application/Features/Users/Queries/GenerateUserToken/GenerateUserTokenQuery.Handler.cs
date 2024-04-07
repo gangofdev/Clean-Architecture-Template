@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CleanArc.Application.Features.Users.Queries.GenerateUserToken;
 
-internal class GenerateUserTokenQueryHandler : IRequestHandler<GenerateUserTokenQuery, OperationResult<AccessToken>>
+internal class GenerateUserTokenQueryHandler : IRequestHandler<GenerateUserTokenQuery, OperationResult<AccessTokenResponse>>
 {
     private readonly IJwtService _jwtService;
     private readonly IAppUserManager _userManager;
@@ -17,12 +17,12 @@ internal class GenerateUserTokenQueryHandler : IRequestHandler<GenerateUserToken
         _userManager = userManager;
     }
 
-    public async ValueTask<OperationResult<AccessToken>> Handle(GenerateUserTokenQuery request, CancellationToken cancellationToken)
+    public async ValueTask<OperationResult<AccessTokenResponse>> Handle(GenerateUserTokenQuery request, CancellationToken cancellationToken)
     {
         var user = await _userManager.GetUserByCode(request.UserKey);
 
         if (user is null)
-            return OperationResult<AccessToken>.FailureResult("User Not found");
+            return OperationResult<AccessTokenResponse>.FailureResult("User Not found");
 
         var result = new IdentityResult();
         if (user.PhoneNumberConfirmed)
@@ -35,12 +35,12 @@ internal class GenerateUserTokenQueryHandler : IRequestHandler<GenerateUserToken
         }
 
         if (!result.Succeeded)
-            return OperationResult<AccessToken>.FailureResult(result.Errors.StringifyIdentityResultErrors());
+            return OperationResult<AccessTokenResponse>.FailureResult(result.Errors.StringifyIdentityResultErrors());
 
         await _userManager.UpdateUserAsync(user);
 
         var token = await _jwtService.GenerateAsync(user);
 
-        return OperationResult<AccessToken>.SuccessResult(token);
+        return OperationResult<AccessTokenResponse>.SuccessResult(token);
     }
 }

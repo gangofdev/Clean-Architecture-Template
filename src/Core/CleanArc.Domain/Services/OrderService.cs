@@ -13,16 +13,10 @@ using System.Threading.Tasks;
 
 namespace CleanArc.Domain.Services
 {
-    public class OrderService : IOrderContract
+    public class OrderService(IUnitOfWork unitOfWork, IAppUserManager userManager) : IOrderContract
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IAppUserManager _userManager;
-
-        public OrderService(IUnitOfWork unitOfWork, IAppUserManager userManager)
-        {
-            _unitOfWork = unitOfWork;
-            _userManager = userManager;
-        }
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
+        private readonly IAppUserManager _userManager = userManager;
 
         public async ValueTask<OperationResult<Order>> PlaceOrder(Order order)
         {

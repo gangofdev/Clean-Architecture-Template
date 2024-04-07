@@ -6,7 +6,7 @@ using Mediator;
 
 namespace CleanArc.Application.Features.Connect.Commands.RefreshUserTokenCommand;
 
-public record RefreshUserTokenCommand(Guid RefreshToken) : IRequest<OperationResult<AccessToken>>,
+public record RefreshUserTokenCommand(Guid RefreshToken) : IRequest<OperationResult<AccessTokenResponse>>,
     IValidatableModel<RefreshUserTokenCommand>
 {
     public IValidator<RefreshUserTokenCommand> ValidateApplicationModel(ApplicationBaseValidationModelProvider<RefreshUserTokenCommand> validator)

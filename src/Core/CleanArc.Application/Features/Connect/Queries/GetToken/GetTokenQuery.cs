@@ -6,7 +6,7 @@ using Mediator;
 
 namespace CleanArc.Application.Features.Connect.Queries.GetToken;
 
-public record GetTokenQuery(string UserName, string Password) : IRequest<OperationResult<AccessToken>>,
+public record GetTokenQuery(string UserName, string Password) : IRequest<OperationResult<AccessTokenResponse>>,
     IValidatableModel<GetTokenQuery>
 {
     public IValidator<GetTokenQuery> ValidateApplicationModel(ApplicationBaseValidationModelProvider<GetTokenQuery> validator)

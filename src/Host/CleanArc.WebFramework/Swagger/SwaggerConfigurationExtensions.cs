@@ -121,7 +121,7 @@ public static class SwaggerConfigurationExtensions
                 {
                     endpointApiVersion.Deconstruct(out _, out var endpointModel);
 
-                   return endpointModel.DeclaredApiVersions.Any(version => $"v{version.ToString()}" == docName);
+                   return endpointModel.DeclaredApiVersions.Any(version => $"v{version}" == docName);
 
                 }
 
@@ -131,7 +131,7 @@ public static class SwaggerConfigurationExtensions
                     .GetCustomAttributes<ApiVersionAttribute>(true)
                     .SelectMany(attr => attr.Versions);
 
-                return versions.Any(v => $"v{v.ToString()}" == docName);
+                return versions.Any(v => $"v{v}" == docName);
             });
             #endregion
 

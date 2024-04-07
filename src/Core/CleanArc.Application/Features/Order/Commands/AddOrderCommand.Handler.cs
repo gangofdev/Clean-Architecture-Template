@@ -5,18 +5,11 @@ using Mediator;
 
 namespace CleanArc.Application.Features.Order.Commands;
 
-internal class AddOrderCommandHandler:IRequestHandler<AddOrderCommand,OperationResult<bool>>
+internal class AddOrderCommandHandler(IUnitOfWork unitOfWork, IAppUserManager userManager, IOrderContract orderContract) : IRequestHandler<AddOrderCommand,OperationResult<bool>>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IAppUserManager _userManager;
-    private readonly IOrderContract _orderContract;
-
-    public AddOrderCommandHandler(IUnitOfWork unitOfWork, IAppUserManager userManager,IOrderContract orderContract)
-    {
-        _unitOfWork = unitOfWork;
-        _userManager = userManager;
-        _orderContract = orderContract;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IAppUserManager _userManager = userManager;
+    private readonly IOrderContract _orderContract = orderContract;
 
     public async ValueTask<OperationResult<bool>> Handle(AddOrderCommand request, CancellationToken cancellationToken)
     {

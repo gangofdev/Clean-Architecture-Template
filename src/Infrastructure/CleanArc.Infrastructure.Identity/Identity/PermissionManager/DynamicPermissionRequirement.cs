@@ -7,21 +7,13 @@ public class DynamicPermissionRequirement : IAuthorizationRequirement
 {
 }
 
-public class DynamicPermissionHandler : AuthorizationHandler<DynamicPermissionRequirement>
+public class DynamicPermissionHandler(
+    IDynamicPermissionService dynamicPermissionService,
+    IHttpContextAccessor contextAccessor
+    ) : AuthorizationHandler<DynamicPermissionRequirement>
 {
-    private readonly IDynamicPermissionService _dynamicPermissionService;
-    private readonly IHttpContextAccessor _contextAccessor;
-
-    public DynamicPermissionHandler(
-        IDynamicPermissionService dynamicPermissionService,
-        IHttpContextAccessor contextAccessor
-    )
-    {
-        _dynamicPermissionService = dynamicPermissionService;
-        _contextAccessor = contextAccessor;
-    }
-
-       
+    private readonly IDynamicPermissionService _dynamicPermissionService = dynamicPermissionService;
+    private readonly IHttpContextAccessor _contextAccessor = contextAccessor;
 
     protected override Task HandleRequirementAsync(
         AuthorizationHandlerContext context,

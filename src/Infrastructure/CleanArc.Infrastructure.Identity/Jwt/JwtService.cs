@@ -14,24 +14,15 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CleanArc.Infrastructure.Identity.Jwt;
 
-public class JwtService : IJwtService
+public class JwtService(IOptions<IdentitySettings> siteSetting, AppUserManager userManager, IUserClaimsPrincipalFactory<User> claimsPrincipal, IUnitOfWork unitOfWork) : IJwtService
 {
-    private readonly IdentitySettings _siteSetting;
-    private readonly AppUserManager _userManager;
-    private IUserClaimsPrincipalFactory<User> _claimsPrincipal;
+    private readonly IdentitySettings _siteSetting = siteSetting.Value;
+    private readonly AppUserManager _userManager = userManager;
+    private IUserClaimsPrincipalFactory<User> _claimsPrincipal = claimsPrincipal;
 
-    private readonly IUnitOfWork _unitOfWork;
-    //private readonly AppUserClaimsPrincipleFactory claimsPrincipleFactory;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public JwtService(IOptions<IdentitySettings> siteSetting, AppUserManager userManager, IUserClaimsPrincipalFactory<User> claimsPrincipal, IUnitOfWork unitOfWork)
-    {
-        _siteSetting = siteSetting.Value;
-        _userManager = userManager;
-        _claimsPrincipal = claimsPrincipal;
-        _unitOfWork = unitOfWork;
-    }
-
-    public async Task<AccessToken> GenerateAsync(User user)
+    public async Task<AccessTokenResponse> GenerateAsync(User user)
     {
         var secretKey = Encoding.UTF8.GetBytes(_siteSetting.SecretKey); // longer that 16 character
         var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature);
@@ -62,7 +53,7 @@ public class JwtService : IJwtService
         var refreshToken = await _unitOfWork.UserRefreshTokenRepository.CreateToken(user.Id);
         await _unitOfWork.CommitAsync();
 
-        return new AccessToken(securityToken, refreshToken.ToString());
+        return new AccessTokenResponse(securityToken, refreshToken.ToString());
     }
 
     public Task<ClaimsPrincipal> GetPrincipalFromExpiredToken(string token)
@@ -87,14 +78,14 @@ public class JwtService : IJwtService
         return Task.FromResult(principal);
     }
 
-    public async Task<AccessToken> GenerateByPhoneNumberAsync(string phoneNumber)
+    public async Task<AccessTokenResponse> GenerateByPhoneNumberAsync(string phoneNumber)
     {
         var user = await _userManager.Users.AsNoTracking().FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
         var result = await this.GenerateAsync(user);
         return result;
     }
 
-    public async Task<AccessToken> RefreshToken(Guid refreshTokenId)
+    public async Task<AccessTokenResponse> RefreshToken(Guid refreshTokenId)
     {
         var refreshToken = await _unitOfWork.UserRefreshTokenRepository.GetTokenWithInvalidation(refreshTokenId);
 

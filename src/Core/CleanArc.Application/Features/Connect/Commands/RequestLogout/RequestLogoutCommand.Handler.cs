@@ -8,14 +8,9 @@ using Mediator;
 
 namespace CleanArc.Application.Features.Connect.Commands.RequestLogout
 {
-    internal class RequestLogoutCommandHandler:IRequestHandler<RequestLogoutCommand,OperationResult<bool>>
+    internal class RequestLogoutCommandHandler(IAppUserManager userManager) : IRequestHandler<RequestLogoutCommand,OperationResult<bool>>
     {
-        private readonly IAppUserManager _userManager;
-
-        public RequestLogoutCommandHandler(IAppUserManager userManager)
-        {
-            _userManager = userManager;
-        }
+        private readonly IAppUserManager _userManager = userManager;
 
         public async ValueTask<OperationResult<bool>> Handle(RequestLogoutCommand request, CancellationToken cancellationToken)
         {

@@ -6,14 +6,9 @@ using Mediator;
 
 namespace CleanArc.Web.Plugins.Grpc.Services;
 
-public class UserGrpcServices : UserServices.UserServicesBase
+public class UserGrpcServices(IMediator mediator) : UserServices.UserServicesBase
 {
-    private readonly IMediator _mediator;
-
-    public UserGrpcServices(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    private readonly IMediator _mediator = mediator;
 
     public override async Task<TokenRequestResult> TokenRequest(UserTokenRequest request, ServerCallContext context)
     {
@@ -72,11 +67,14 @@ public class UserGrpcServices : UserServices.UserServicesBase
 
         return new GetUserTokenRequestResult()
         {
-            IsSuccess = true, Message = string.Empty,
+            IsSuccess = true,
+            Message = string.Empty,
             Token = new UserToken()
             {
-                AccessToken = tokenQuery.Result.access_token, ExpiresIn = tokenQuery.Result.expires_in,
-                RefreshToken = tokenQuery.Result.refresh_token, TokenType = tokenQuery.Result.token_type
+                AccessToken = tokenQuery.Result.AccessToken,
+                ExpiresIn = tokenQuery.Result.ExpiresIn,
+                RefreshToken = tokenQuery.Result.RefreshToken,
+                TokenType = tokenQuery.Result.TokenType
             }
         };
     }

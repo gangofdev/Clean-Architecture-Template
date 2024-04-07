@@ -40,7 +40,7 @@ namespace CleanArc.Test.Web.Api
 
             var model = new GetTokenQuery("user@cleanarc.com", "Test@123");
             //complete the test 
-            var userTokenRequestResult = new AccessToken(null);
+            var userTokenRequestResult = new AccessTokenResponse(null);
             mediator.Setup(x => x.Send(model, new CancellationToken())).ReturnsAsync(userTokenRequestResult);
             //Act
             var result = await controller.TokenRequest(model);

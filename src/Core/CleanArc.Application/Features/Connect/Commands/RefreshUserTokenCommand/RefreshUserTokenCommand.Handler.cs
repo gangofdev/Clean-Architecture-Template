@@ -3,23 +3,18 @@ using CleanArc.Domain.Models.Jwt;
 
 namespace CleanArc.Application.Features.Connect.Commands.RefreshUserTokenCommand
 {
-    internal class RefreshUserTokenCommandHandler : IRequestHandler<RefreshUserTokenCommand,OperationResult<AccessToken>>
+    internal class RefreshUserTokenCommandHandler(IJwtService jwtService) : IRequestHandler<RefreshUserTokenCommand,OperationResult<AccessTokenResponse>>
     {
-        private readonly IJwtService _jwtService;
+        private readonly IJwtService _jwtService = jwtService;
 
-        public RefreshUserTokenCommandHandler(IJwtService jwtService)
-        {
-            _jwtService = jwtService;
-        }
-
-        public async ValueTask<OperationResult<AccessToken>> Handle(RefreshUserTokenCommand request, CancellationToken cancellationToken)
+        public async ValueTask<OperationResult<AccessTokenResponse>> Handle(RefreshUserTokenCommand request, CancellationToken cancellationToken)
         {
             var newToken = await _jwtService.RefreshToken(request.RefreshToken);
 
             if(newToken is null)
-                return OperationResult<AccessToken>.FailureResult("Invalid refresh token");
+                return OperationResult<AccessTokenResponse>.FailureResult("Invalid refresh token");
 
-            return OperationResult<AccessToken>.SuccessResult(newToken);
+            return OperationResult<AccessTokenResponse>.SuccessResult(newToken);
         }
     }
 }

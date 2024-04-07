@@ -4,19 +4,11 @@ using Microsoft.Extensions.Logging;
 
 namespace CleanArc.Application.Features.Users.Queries.TokenRequest;
 
-public class UserTokenRequestQueryHandler:IRequestHandler<UserTokenRequestQuery,OperationResult<UserTokenRequestQueryResponse>>
+public class UserTokenRequestQueryHandler(IAppUserManager userManager, IMediator mediator, ILogger<UserTokenRequestQueryHandler> logger) : IRequestHandler<UserTokenRequestQuery,OperationResult<UserTokenRequestQueryResponse>>
 {
-    private readonly IAppUserManager _userManager;
-    private readonly IMediator _mediator;
-    private readonly ILogger<UserTokenRequestQueryHandler> _logger;
-
-    public UserTokenRequestQueryHandler(IAppUserManager userManager, IMediator mediator, ILogger<UserTokenRequestQueryHandler> logger)
-    {
-        _userManager = userManager;
-        _mediator = mediator;
-        _logger = logger;
-    }
-
+    private readonly IAppUserManager _userManager = userManager;
+    private readonly IMediator _mediator = mediator;
+    private readonly ILogger<UserTokenRequestQueryHandler> _logger = logger;
 
     public async ValueTask<OperationResult<UserTokenRequestQueryResponse>> Handle(UserTokenRequestQuery request, CancellationToken cancellationToken)
     {
