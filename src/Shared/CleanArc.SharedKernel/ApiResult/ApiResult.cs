@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using CleanArc.SharedKernel.Extensions;
 
-namespace CleanArc.Application.Models.ApiResult;
+namespace CleanArc.SharedKernel.ApiResult;
 
 public class ApiResult
 {

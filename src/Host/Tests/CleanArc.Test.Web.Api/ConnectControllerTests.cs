@@ -5,7 +5,6 @@ using CleanArc.Web.Api.Controllers.V1.Connect;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Xunit;
 namespace CleanArc.Test.Web.Api
 {
     public class ConnectControllerTests

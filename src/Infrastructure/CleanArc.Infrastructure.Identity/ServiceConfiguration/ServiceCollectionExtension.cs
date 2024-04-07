@@ -1,5 +1,4 @@
-﻿using CleanArc.Application.Models.ApiResult;
-using CleanArc.Domain.Contracts;
+﻿using CleanArc.Domain.Contracts;
 using CleanArc.Domain.Contracts.Identity;
 using CleanArc.Infrastructure.Identity.Identity;
 using CleanArc.Infrastructure.Identity.Identity.Dtos;

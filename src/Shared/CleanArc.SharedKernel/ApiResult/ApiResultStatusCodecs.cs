@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CleanArc.Application.Models.ApiResult;
+namespace CleanArc.SharedKernel.ApiResult;
 
 public enum ApiResultStatusCode
 {

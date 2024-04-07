@@ -1,6 +1,4 @@
-﻿using CleanArc.Application.Models.ApiResult;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace CleanArc.WebFramework.Filters;
 

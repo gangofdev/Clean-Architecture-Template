@@ -1,4 +1,4 @@
-﻿using CleanArc.Application.Models.ApiResult;
+﻿
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

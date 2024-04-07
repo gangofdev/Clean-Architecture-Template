@@ -1,4 +1,5 @@
 ﻿global using CleanArc.Domain.Entities.User;
+global using CleanArc.SharedKernel.ApiResult;
 global using Microsoft.AspNetCore.Authentication;
 global using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 global using Microsoft.AspNetCore.DataProtection;

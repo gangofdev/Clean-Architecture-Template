@@ -1,7 +1,4 @@
-﻿using Carter;
-using CleanArc.Application.Features.Admin.Commands.AddAdminCommand;
-using CleanArc.WebFramework.WebExtensions;
-using Mediator;
+﻿using CleanArc.Application.Features.Admin.Commands.AddAdminCommand;
 
 namespace CleanArc.Web.Api.Endpoints;
 

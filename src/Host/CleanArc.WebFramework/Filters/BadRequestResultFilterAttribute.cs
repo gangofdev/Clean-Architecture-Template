@@ -1,4 +1,4 @@
-﻿using CleanArc.Application.Models.ApiResult;
+﻿
 using CleanArc.SharedKernel.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

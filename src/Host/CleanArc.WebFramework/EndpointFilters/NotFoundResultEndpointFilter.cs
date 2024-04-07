@@ -1,4 +1,4 @@
-﻿using CleanArc.Application.Models.ApiResult;
+﻿
 using Microsoft.AspNetCore.Http;
 
 namespace CleanArc.WebFramework.EndpointFilters;
