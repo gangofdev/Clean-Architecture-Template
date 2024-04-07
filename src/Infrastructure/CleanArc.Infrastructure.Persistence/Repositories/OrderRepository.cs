@@ -1,7 +1,10 @@
 ﻿using CleanArc.Domain.Contracts.Persistence;
 using CleanArc.Domain.Entities.Order;
 using CleanArc.Infrastructure.Persistence.Repositories.Common;
+using CleanArc.SharedKernel.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 
 namespace CleanArc.Infrastructure.Persistence.Repositories;
 
@@ -37,5 +40,10 @@ internal class OrderRepository(ApplicationDbContext dbContext) : BaseAsyncReposi
     public async Task DeleteUserOrdersAsync(int userId)
     {
         await UpdateAsync(c => c.UserId == userId, p => p.SetProperty(order => order.IsDeleted, true));
+    }
+
+    public async Task<PagedResult<Order>> GetPagedOrdersAsync(Expression<Func<Order, bool>> filter, Func<IQueryable<Order>, IIncludableQueryable<Order, object>> include, Expression<Func<Order, object>> orderBy, int pageIndex, int pageSize)
+    {
+        return await GetPagedAsync(filter, include, orderBy, pageIndex, pageSize);
     }
 }

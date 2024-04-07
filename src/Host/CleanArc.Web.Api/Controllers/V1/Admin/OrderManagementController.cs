@@ -1,4 +1,5 @@
 ﻿using CleanArc.Application.Features.Order.Queries.GetAllOrders;
+using CleanArc.Application.Features.Order.Queries.GetPagedOrders;
 using CleanArc.Infrastructure.Identity.Identity.PermissionManager;
 
 
@@ -17,6 +18,14 @@ namespace CleanArc.Web.Api.Controllers.V1.Admin
         public async Task<IActionResult> GetOrders()
         {
             var queryResult = await _sender.Send(new GetAllOrdersQuery());
+
+            return base.OperationResult(queryResult);
+        }
+
+        [HttpGet("Paged")]
+        public async Task<IActionResult> GetOrders(GetPagedOrdersQuery request)
+        {
+            var queryResult = await _sender.Send(request);
 
             return base.OperationResult(queryResult);
         }
