@@ -89,7 +89,7 @@ public static class SwaggerConfigurationExtensions
 
             options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
             {
-                Description = "Standard Authorization header using the Bearer scheme. Example: \" {token}\"",
+                Description = "Standard Authorization header using the Bearer scheme. Exclude Bearer in token, Example: \" {token}\"",
                 In =ParameterLocation.Header,
                 Name = "Authorization",
                 Type = SecuritySchemeType.Http,

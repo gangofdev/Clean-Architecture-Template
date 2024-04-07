@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 
@@ -105,7 +106,7 @@ public static class ServiceCollectionExtension
         {
             var secretkey = Encoding.UTF8.GetBytes(identitySettings.SecretKey);
             var encryptionkey = Encoding.UTF8.GetBytes(identitySettings.Encryptkey);
-
+            
             var validationParameters = new TokenValidationParameters
             {
                 ClockSkew = TimeSpan.Zero, // default: 5 min
@@ -124,9 +125,9 @@ public static class ServiceCollectionExtension
                 ValidIssuer = identitySettings.Issuer,
 
                 TokenDecryptionKey = new SymmetricSecurityKey(encryptionkey),
-
+                 
             };
-
+            
             options.RequireHttpsMetadata = false;
             options.SaveToken = true;
             options.TokenValidationParameters = validationParameters;
@@ -205,6 +206,7 @@ public static class ServiceCollectionExtension
                         ApiResultStatusCode.Forbidden, ApiResultStatusCode.Forbidden.ToDisplay()));
                 }
             };
+            options.IncludeErrorDetails=true;
         });
 
         return services;

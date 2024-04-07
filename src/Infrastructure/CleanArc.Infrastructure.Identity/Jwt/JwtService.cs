@@ -30,6 +30,7 @@ public class JwtService : IJwtService
         _claimsPrincipal = claimsPrincipal;
         _unitOfWork = unitOfWork;
     }
+
     public async Task<AccessToken> GenerateAsync(User user)
     {
         var secretKey = Encoding.UTF8.GetBytes(_siteSetting.SecretKey); // longer that 16 character
