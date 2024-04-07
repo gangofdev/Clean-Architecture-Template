@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using CleanArc.Application.Features.Connect.Commands.Create;
 using CleanArc.Application.Features.Connect.Queries.GetToken;
 using CleanArc.Application.Features.Connect.Commands.RequestLogout;
+using CleanArc.Application.Features.Connect.Queries.GetUserInfo;
 
 namespace CleanArc.Web.Api.Controllers.V1.Connect;
 
@@ -51,6 +52,15 @@ public class ConnectController : BaseController
         var newTokenResult = await _mediator.Send(model);
 
         return base.OperationResult(newTokenResult);
+    }
+
+    [Authorize]
+    [HttpGet("UserInfo")]
+    public async Task<IActionResult> GetUserInfo()
+    {
+        var query = await _mediator.Send(new GetUserInfoRequestQuery());
+
+        return base.OperationResult(query);
     }
 
     [HttpPost("Logout")]

@@ -1,7 +1,11 @@
 ﻿using Asp.Versioning;
+using CleanArc.SharedKernel.Context;
+using CleanArc.WebFramework.Context;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
 
 namespace CleanArc.WebFramework.ServiceConfiguration;
 
@@ -34,7 +38,20 @@ public static class ServiceCollectionExtension
             //options.ApiVersionReader = ApiVersionReader.Combine(new QueryStringApiVersionReader("api-version"), new UrlSegmentApiVersionReader())
             // combine of [querystring] & [urlsegment]
         });
+        services.AddScoped<IRequestContext>(sp =>
+        {
 
+            var httpContextAccessor = sp.GetRequiredService<IHttpContextAccessor>();
+            var context = httpContextAccessor.HttpContext;
+            if (context != null && context.User.Identity.IsAuthenticated)
+            {
+                var userIdentity = context.User.Identity as ClaimsIdentity;
+
+                return new RequestContext() { UserName = userIdentity.Name, DisplayName = userIdentity.GetUserName(), UserId = userIdentity.GetUserId<int>() };
+            }
+            return new RequestContext();
+
+        });
         return services;
 
 

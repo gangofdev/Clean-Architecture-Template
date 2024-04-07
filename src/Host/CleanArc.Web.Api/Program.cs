@@ -47,7 +47,7 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
 builder.Services.AddCarter(configurator: configurator => { configurator.WithEmptyValidators();});
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddApplicationServices()
     .RegisterIdentityServices(identitySettings)
     .RegisterCoreServices()
