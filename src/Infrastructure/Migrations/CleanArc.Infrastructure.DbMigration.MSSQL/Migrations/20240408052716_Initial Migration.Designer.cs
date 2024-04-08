@@ -6,28 +6,62 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Persistence;
 
-namespace Persistence.Migrations
+#nullable disable
+
+namespace CleanArc.Infrastructure.DbMigration.MSSQL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210327210004_Init")]
-    partial class Init
+    [Migration("20240408052716_Initial Migration")]
+    partial class InitialMigration
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            modelBuilder.Entity("Domain.Entities.User.Role", b =>
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CleanArc.Domain.Entities.Order.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -57,12 +91,13 @@ namespace Persistence.Migrations
                     b.ToTable("Roles", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.RoleClaim", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.RoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -83,13 +118,14 @@ namespace Persistence.Migrations
                     b.ToTable("RoleClaims", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.User", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("UserId")
-                        .UseIdentityColumn();
+                        .HasColumnName("UserId");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -160,12 +196,13 @@ namespace Persistence.Migrations
                     b.ToTable("Users", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserClaim", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -183,7 +220,7 @@ namespace Persistence.Migrations
                     b.ToTable("UserClaims", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserLogin", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserLogin", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -207,7 +244,7 @@ namespace Persistence.Migrations
                     b.ToTable("UserLogins", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserRefreshToken", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserRefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -235,7 +272,7 @@ namespace Persistence.Migrations
                     b.ToTable("UserRefreshTokens", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserRole", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserRole", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -253,7 +290,7 @@ namespace Persistence.Migrations
                     b.ToTable("UserRoles", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserToken", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserToken", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -275,9 +312,20 @@ namespace Persistence.Migrations
                     b.ToTable("UserTokens", "usr");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.RoleClaim", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.Order.Order", b =>
                 {
-                    b.HasOne("Domain.Entities.User.Role", "Role")
+                    b.HasOne("CleanArc.Domain.Entities.User.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.RoleClaim", b =>
+                {
+                    b.HasOne("CleanArc.Domain.Entities.User.Role", "Role")
                         .WithMany("Claims")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -286,9 +334,9 @@ namespace Persistence.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserClaim", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserClaim", b =>
                 {
-                    b.HasOne("Domain.Entities.User.User", "User")
+                    b.HasOne("CleanArc.Domain.Entities.User.User", "User")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -297,9 +345,9 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserLogin", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserLogin", b =>
                 {
-                    b.HasOne("Domain.Entities.User.User", "User")
+                    b.HasOne("CleanArc.Domain.Entities.User.User", "User")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -308,9 +356,9 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserRefreshToken", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserRefreshToken", b =>
                 {
-                    b.HasOne("Domain.Entities.User.User", "User")
+                    b.HasOne("CleanArc.Domain.Entities.User.User", "User")
                         .WithMany("UserRefreshTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -319,15 +367,15 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserRole", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserRole", b =>
                 {
-                    b.HasOne("Domain.Entities.User.Role", "Role")
+                    b.HasOne("CleanArc.Domain.Entities.User.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.User.User", "User")
+                    b.HasOne("CleanArc.Domain.Entities.User.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -338,9 +386,9 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.UserToken", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.UserToken", b =>
                 {
-                    b.HasOne("Domain.Entities.User.User", "User")
+                    b.HasOne("CleanArc.Domain.Entities.User.User", "User")
                         .WithMany("Tokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -349,18 +397,20 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.Role", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.Role", b =>
                 {
                     b.Navigation("Claims");
 
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User.User", b =>
+            modelBuilder.Entity("CleanArc.Domain.Entities.User.User", b =>
                 {
                     b.Navigation("Claims");
 
                     b.Navigation("Logins");
+
+                    b.Navigation("Orders");
 
                     b.Navigation("Tokens");
 

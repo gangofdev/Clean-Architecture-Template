@@ -61,14 +61,34 @@ public static class ServiceCollectionExtensions
             var configurationBuilder = new ConfigurationBuilder();
             var configuration = configurationBuilder
                 .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.Development.json")
+                .AddEnvironmentVariables()
                 .Build();
-            
-           // var connectionString = configuration.GetConnectionString(_databaseName);
+            Console.WriteLine($"DB Context Factory Selected DB: {configuration["HostSettings:Database"]}");
+            string database = configuration["HostSettings:Database"];
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>();
+            switch (database)
+            {
+                case nameof(HostDatabase.SqlServer):
+                    options.UseSqlServer(configuration.GetConnectionString("SqlServer"), builderOptions =>
+                    {
+                        builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.MSSQL");
+                    });
+                    break;
+                case nameof(HostDatabase.Postgres):
+                    string connStr = configuration.GetConnectionString("Postgres");
+                    options.UseNpgsql(configuration.GetConnectionString("Postgres"), builderOptions =>
+                    {
+                        builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.Postgres");
+                    });
+                    break;
+                default:
+                    options.UseInMemoryDatabase("InMemoryDb");
+                    break;
+            }
 
-            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            optionsBuilder.UseNpgsql("User ID=techdev;Password=techdev123;Host=localhost;Port=5432;Database=cleanarc_dev;Pooling=true;Connection Lifetime=0;");
 
-            return new ApplicationDbContext(optionsBuilder.Options);
+            return new ApplicationDbContext(options.Options);
         }
     }
 }
