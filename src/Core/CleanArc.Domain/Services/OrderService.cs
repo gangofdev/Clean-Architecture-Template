@@ -7,6 +7,7 @@ using CleanArc.Domain.Entities.User;
 using CleanArc.Domain.Models;
 using CleanArc.SharedKernel;
 using CleanArc.SharedKernel.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,13 +31,13 @@ namespace CleanArc.Domain.Services
         }
         public async ValueTask<OperationResult<PagedResult<OrderInfo>>> GetPagedOrders(PagedRequest pagedRequest)
         {
-            var orders = await _unitOfWork.OrderRepository.GetPagedOrdersAsync(pageIndex: pagedRequest.PageIndex, pageSize: pagedRequest.PageSize);
-            PagedResult<OrderInfo> pagedOrderInfo = new PagedResult<OrderInfo>(orders.Page.Select(c => new OrderInfo
+            var orders = await _unitOfWork.OrderRepository.GetPagedOrdersAsync(include: query => query.Include(_ => _.User),pageIndex: pagedRequest.PageIndex, pageSize: pagedRequest.PageSize);
+            PagedResult<OrderInfo> pagedOrderInfo = new(orders.Page.Select(c => new OrderInfo
             {
                 OrderId = c.Id,
                 OrderName = c.OrderName,
                 UserId = c.UserId,
-                UserName = c.User.UserName
+                UserName = c.User?.UserName
             }).ToList(),
                 orders.TotalCount,
                 orders.PageCount,
