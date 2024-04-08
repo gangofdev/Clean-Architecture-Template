@@ -74,8 +74,8 @@ builder.Services.AddAutoMapper(expression =>
 var app = builder.Build();
 
 
-//await app.ApplyMigrationsAsync();
-//await app.SeedDefaultUsersAsync();
+await app.ApplyMigrationsAsync();
+await app.SeedDefaultUsersAsync();
 
 if (app.Environment.IsDevelopment())
 {

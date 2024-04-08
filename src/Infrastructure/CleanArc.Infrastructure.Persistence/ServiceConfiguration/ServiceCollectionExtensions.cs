@@ -19,21 +19,25 @@ public static class ServiceCollectionExtensions
 
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
-           var hostSettings= sp.GetRequiredService<IOptions<HostSettings>>()?.Value;
-            
+            var hostSettings = sp.GetRequiredService<IOptions<HostSettings>>()?.Value;
+
             switch (hostSettings.Database)
             {
                 case HostDatabase.SqlServer:
-                    options.UseSqlServer(configuration.GetConnectionString("SqlServer"));
-                    break;
-                case HostDatabase.Postgres:
-                    string connStr = configuration.GetConnectionString("Postgres");
-                    options.UseNpgsql(configuration.GetConnectionString("Postgres"), builderOptions => {
-                    
+                    options.UseSqlServer(configuration.GetConnectionString(nameof(HostDatabase.SqlServer)), builderOptions =>
+                    {
+                        builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.MSSQL");
                     });
                     break;
+                case HostDatabase.Postgres:
+                    options.UseNpgsql(configuration.GetConnectionString(nameof(HostDatabase.Postgres)), builderOptions =>
+                    {
+                        builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.Postgres");
+                    });
+                    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+                    break;
                 default:
-                    options.UseInMemoryDatabase("InMemoryDb");
+                    options.UseInMemoryDatabase(nameof(HostDatabase.InMemory));
                     break;
             }
         });
@@ -64,26 +68,25 @@ public static class ServiceCollectionExtensions
                 .AddJsonFile("appsettings.Development.json")
                 .AddEnvironmentVariables()
                 .Build();
-            Console.WriteLine($"DB Context Factory Selected DB: {configuration["HostSettings:Database"]}");
-            string database = configuration["HostSettings:Database"];
+            string database = configuration[$"{nameof(HostSettings)}:{nameof(HostSettings.Database)}"];
+            Console.WriteLine($"DB Context Factory Selected DB: {database}");
             var options = new DbContextOptionsBuilder<ApplicationDbContext>();
             switch (database)
             {
                 case nameof(HostDatabase.SqlServer):
-                    options.UseSqlServer(configuration.GetConnectionString("SqlServer"), builderOptions =>
+                    options.UseSqlServer(configuration.GetConnectionString(nameof(HostDatabase.SqlServer)), builderOptions =>
                     {
                         builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.MSSQL");
                     });
                     break;
                 case nameof(HostDatabase.Postgres):
-                    string connStr = configuration.GetConnectionString("Postgres");
-                    options.UseNpgsql(configuration.GetConnectionString("Postgres"), builderOptions =>
+                    options.UseNpgsql(configuration.GetConnectionString(nameof(HostDatabase.Postgres)), builderOptions =>
                     {
                         builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.Postgres");
                     });
                     break;
                 default:
-                    options.UseInMemoryDatabase("InMemoryDb");
+                    options.UseInMemoryDatabase(nameof(HostDatabase.InMemory));
                     break;
             }
 
