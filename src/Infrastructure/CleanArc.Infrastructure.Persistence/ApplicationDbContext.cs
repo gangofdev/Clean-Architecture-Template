@@ -4,6 +4,7 @@ using CleanArc.Domain.Entities.User;
 using CleanArc.SharedKernel.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace CleanArc.Infrastructure.Persistence;
 
@@ -14,7 +15,7 @@ public class ApplicationDbContext: IdentityDbContext<User, Role, int, UserClaim,
     {
         base.SavingChanges += OnSavingChanges;
     }
-
+    
     private void OnSavingChanges(object sender, SavingChangesEventArgs e)
     {
         _cleanString();

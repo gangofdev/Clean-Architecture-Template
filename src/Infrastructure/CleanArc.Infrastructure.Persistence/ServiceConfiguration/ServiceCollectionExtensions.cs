@@ -2,7 +2,9 @@
 using CleanArc.Infrastructure.Persistence.Repositories.Common;
 using CleanArc.SharedKernel.Common;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -50,6 +52,23 @@ public static class ServiceCollectionExtensions
         if (context.Database.ProviderName.Split(".").Last() != nameof(Microsoft.EntityFrameworkCore.InMemory))
         {
             await context.Database.MigrateAsync();
+        }
+    }
+    public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+    {
+        public ApplicationDbContext CreateDbContext(string[] args)
+        {
+            var configurationBuilder = new ConfigurationBuilder();
+            var configuration = configurationBuilder
+                .AddJsonFile("appsettings.json")
+                .Build();
+            
+           // var connectionString = configuration.GetConnectionString(_databaseName);
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseNpgsql("User ID=techdev;Password=techdev123;Host=localhost;Port=5432;Database=cleanarc_dev;Pooling=true;Connection Lifetime=0;");
+
+            return new ApplicationDbContext(optionsBuilder.Options);
         }
     }
 }
