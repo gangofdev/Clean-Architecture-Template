@@ -1,9 +1,13 @@
 ﻿using CleanArc.Domain.Contracts.Persistence;
 using CleanArc.Infrastructure.Persistence.Repositories.Common;
+using CleanArc.SharedKernel.Common;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace CleanArc.Infrastructure.Persistence.ServiceConfiguration;
 
@@ -13,11 +17,29 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
-            //options
-            //    .UseSqlServer(configuration.GetConnectionString("SqlServer"));
-            options.UseInMemoryDatabase("InMemoryDb");
+            var hostSettings = sp.GetRequiredService<IOptions<HostSettings>>()?.Value;
+
+            switch (hostSettings.Database)
+            {
+                case HostDatabase.SqlServer:
+                    options.UseSqlServer(configuration.GetConnectionString(nameof(HostDatabase.SqlServer)), builderOptions =>
+                    {
+                        builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.MSSQL");
+                    });
+                    break;
+                case HostDatabase.Postgres:
+                    options.UseNpgsql(configuration.GetConnectionString(nameof(HostDatabase.Postgres)), builderOptions =>
+                    {
+                        builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.Postgres");
+                    });
+                    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+                    break;
+                default:
+                    options.UseInMemoryDatabase(nameof(HostDatabase.InMemory));
+                    break;
+            }
         });
 
         return services;
@@ -34,6 +56,42 @@ public static class ServiceCollectionExtensions
         if (context.Database.ProviderName.Split(".").Last() != nameof(Microsoft.EntityFrameworkCore.InMemory))
         {
             await context.Database.MigrateAsync();
+        }
+    }
+    public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+    {
+        public ApplicationDbContext CreateDbContext(string[] args)
+        {
+            var configurationBuilder = new ConfigurationBuilder();
+            var configuration = configurationBuilder
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.Development.json")
+                .AddEnvironmentVariables()
+                .Build();
+            string database = configuration[$"{nameof(HostSettings)}:{nameof(HostSettings.Database)}"];
+            Console.WriteLine($"DB Context Factory Selected DB: {database}");
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>();
+            switch (database)
+            {
+                case nameof(HostDatabase.SqlServer):
+                    options.UseSqlServer(configuration.GetConnectionString(nameof(HostDatabase.SqlServer)), builderOptions =>
+                    {
+                        builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.MSSQL");
+                    });
+                    break;
+                case nameof(HostDatabase.Postgres):
+                    options.UseNpgsql(configuration.GetConnectionString(nameof(HostDatabase.Postgres)), builderOptions =>
+                    {
+                        builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.Postgres");
+                    });
+                    break;
+                default:
+                    options.UseInMemoryDatabase(nameof(HostDatabase.InMemory));
+                    break;
+            }
+
+
+            return new ApplicationDbContext(options.Options);
         }
     }
 }

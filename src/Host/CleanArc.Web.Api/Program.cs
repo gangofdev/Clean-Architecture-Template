@@ -25,6 +25,8 @@ var configuration = builder.Configuration;
 
 Activity.DefaultIdFormat = ActivityIdFormat.W3C;
 
+builder.Services.Configure<HostSettings>(configuration.GetSection(nameof(HostSettings)));
+
 builder.Services.Configure<IdentitySettings>(configuration.GetSection(nameof(IdentitySettings)));
 
 var identitySettings = configuration.GetSection(nameof(IdentitySettings)).Get<IdentitySettings>();
