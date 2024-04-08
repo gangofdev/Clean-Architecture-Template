@@ -23,7 +23,7 @@ namespace CleanArc.Web.Api.Controllers.V1.Admin
         }
 
         [HttpGet("Paged")]
-        public async Task<IActionResult> GetOrders(GetPagedOrdersQuery request)
+        public async Task<IActionResult> GetOrders([FromQuery]GetPagedOrdersQuery request)
         {
             var queryResult = await _sender.Send(request);
 
