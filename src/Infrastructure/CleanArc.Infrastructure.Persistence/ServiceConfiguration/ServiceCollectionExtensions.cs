@@ -1,9 +1,11 @@
 ﻿using CleanArc.Domain.Contracts.Persistence;
 using CleanArc.Infrastructure.Persistence.Repositories.Common;
+using CleanArc.SharedKernel.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace CleanArc.Infrastructure.Persistence.ServiceConfiguration;
 
@@ -13,11 +15,25 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
-            //options
-            //    .UseSqlServer(configuration.GetConnectionString("SqlServer"));
-            options.UseInMemoryDatabase("InMemoryDb");
+           var hostSettings= sp.GetRequiredService<IOptions<HostSettings>>()?.Value;
+            
+            switch (hostSettings.Database)
+            {
+                case HostDatabase.SqlServer:
+                    options.UseSqlServer(configuration.GetConnectionString("SqlServer"));
+                    break;
+                case HostDatabase.Postgres:
+                    string connStr = configuration.GetConnectionString("Postgres");
+                    options.UseNpgsql(configuration.GetConnectionString("Postgres"), builderOptions => {
+                    
+                    });
+                    break;
+                default:
+                    options.UseInMemoryDatabase("InMemoryDb");
+                    break;
+            }
         });
 
         return services;
