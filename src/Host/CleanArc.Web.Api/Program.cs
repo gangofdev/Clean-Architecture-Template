@@ -29,6 +29,8 @@ builder.Services.Configure<HostSettings>(configuration.GetSection(nameof(HostSet
 
 builder.Services.Configure<IdentitySettings>(configuration.GetSection(nameof(IdentitySettings)));
 
+builder.Services.Configure<EmailSettings>(configuration.GetSection(nameof(EmailSettings)));
+
 var identitySettings = configuration.GetSection(nameof(IdentitySettings)).Get<IdentitySettings>();
 
 builder.Services.AddControllers(options =>
@@ -48,7 +50,7 @@ builder.Services.AddControllers(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
-builder.Services.AddCarter(configurator: configurator => { configurator.WithEmptyValidators();});
+builder.Services.AddCarter(configurator: configurator => { configurator.WithEmptyValidators(); });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddApplicationServices()
     .RegisterIdentityServices(identitySettings)
@@ -68,7 +70,7 @@ builder.Services.ConfigureGrpcPluginServices();
 
 builder.Services.AddAutoMapper(expression =>
 {
-    expression.AddMaps(typeof(User), typeof(JwtService), typeof(ConnectController),typeof(OperationResult<>));
+    expression.AddMaps(typeof(User), typeof(JwtService), typeof(ConnectController), typeof(OperationResult<>));
 });
 
 var app = builder.Build();
@@ -82,7 +84,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseExceptionHandler(_=>{});
+app.UseExceptionHandler(_ => { });
 app.UseSwaggerAndUI();
 
 app.MapCarter();
