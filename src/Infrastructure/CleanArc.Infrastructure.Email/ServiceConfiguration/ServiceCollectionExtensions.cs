@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CleanArc.Domain.Contracts.Email;
+using CleanArc.Infrastructure.Email.MailKit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArc.Infrastructure.Email.ServiceConfiguration
 {
@@ -6,6 +8,8 @@ namespace CleanArc.Infrastructure.Email.ServiceConfiguration
     {
         public static IServiceCollection RegisterEmailServices(this IServiceCollection services)
         {
+            services.AddSingleton<IEmailSender, MailKitMailSender>();
+
             return services;
         }
     }
