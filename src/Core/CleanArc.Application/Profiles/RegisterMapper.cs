@@ -23,9 +23,8 @@ public class RegisterMapper : Profile
                 .First().GetParameters().Length;
 
             var model = Activator.CreateInstance(type, new object[typeConstructorArgumentLength]);
-
-            var methodInfo = type.GetMethod("Map") //get the map method directly by the class
-                             ?? type.GetInterface("ICreateMapper`1").GetMethod("Map"); //if null get the interface implementation
+            var methodInfo = type.GetMethod(nameof(ICreateMapper<Object>.Map)) //get the map method directly by the class
+                             ?? type.GetInterface("ICreateMapper`1").GetMethod(nameof(ICreateMapper<Object>.Map)); //if null get the interface implementation
 
             if (model != null)
                 methodInfo?.Invoke(model, new object[] { this });
