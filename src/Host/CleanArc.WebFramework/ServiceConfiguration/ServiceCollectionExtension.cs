@@ -38,7 +38,7 @@ public static class ServiceCollectionExtension
             //options.ApiVersionReader = ApiVersionReader.Combine(new QueryStringApiVersionReader("api-version"), new UrlSegmentApiVersionReader())
             // combine of [querystring] & [urlsegment]
         });
-        services.AddScoped<IRequestContext>(sp =>
+        services.AddTransient<IRequestContext>(sp =>
         {
 
             var httpContextAccessor = sp.GetRequiredService<IHttpContextAccessor>();

@@ -19,7 +19,8 @@ public class ApplicationDbContext: IdentityDbContext<User, Role, int, UserClaim,
     private void OnSavingChanges(object sender, SavingChangesEventArgs e)
     {
         _cleanString();
-        ConfigureEntityDates();
+        // NOT NEED as Interceptor in place
+        // ConfigureEntityDates();
     }
 
     private void _cleanString()
@@ -67,16 +68,16 @@ public class ApplicationDbContext: IdentityDbContext<User, Role, int, UserClaim,
     private void ConfigureEntityDates()
     {
         var updatedEntities = ChangeTracker.Entries().Where(x =>
-            x.Entity is ITimeModification && x.State == EntityState.Modified).Select(x => x.Entity as ITimeModification);
+            x.Entity is IAuditable && x.State == EntityState.Modified).Select(x => x.Entity as IAuditable);
 
         var addedEntities = ChangeTracker.Entries().Where(x =>
-            x.Entity is ITimeModification && x.State == EntityState.Added).Select(x => x.Entity as ITimeModification);
+            x.Entity is IAuditable && x.State == EntityState.Added).Select(x => x.Entity as IAuditable);
 
         foreach (var entity in updatedEntities)
         {
             if (entity != null)
             {
-                entity.ModifiedDate = DateTime.Now;
+                entity.UpdatedOn = DateTime.Now;
             }
         }
 
@@ -84,8 +85,8 @@ public class ApplicationDbContext: IdentityDbContext<User, Role, int, UserClaim,
         {
             if (entity != null)
             {
-                entity.CreatedTime = DateTime.Now;
-                entity.ModifiedDate = DateTime.Now;
+                entity.CreatedOn = DateTime.Now;
+                entity.UpdatedOn = DateTime.Now;
             }
         }
     }

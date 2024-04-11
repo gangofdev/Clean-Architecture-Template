@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace CleanArc.Infrastructure.Persistence.Repositories.Common;
 
-internal abstract class BaseAsyncRepository<TEntity> where TEntity:class,IEntity
+public abstract class BaseAsyncRepository<TEntity> where TEntity:class,IEntity
 {
     public readonly ApplicationDbContext DbContext;
     protected DbSet<TEntity> Entities { get; }
@@ -28,6 +28,11 @@ internal abstract class BaseAsyncRepository<TEntity> where TEntity:class,IEntity
     { 
         await Entities.AddAsync(entity);
            
+    }
+    protected virtual bool Update(TEntity entity)
+    {
+        this.DbContext.Update(entity);
+        return true;
     }
 
     protected virtual async Task UpdateAsync(
