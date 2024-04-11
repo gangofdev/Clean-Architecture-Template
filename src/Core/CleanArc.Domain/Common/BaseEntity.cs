@@ -4,13 +4,23 @@ public interface IEntity
 {
 }
 
-public interface ITimeModification
+
+public interface IAuditable
 {
-    DateTime CreatedTime { get; set; }
-    DateTime? ModifiedDate { get; set; }
+    public string CreatedBy { get; set; }
+    public string? UpdatedBy { get; set; }
+    public DateTime CreatedOn { get; set; }
+    public DateTime? UpdatedOn { get; set; }
 }
 
-public abstract class BaseEntity<TKey> : IEntity, ITimeModification
+public interface ISoftDeletable
+{
+    bool IsDeleted { get; set; }
+
+    DateTime? DeletedOn { get; set; }
+}
+
+public abstract class BaseEntity<TKey> : IEntity, ISoftDeletable, IAuditable
 {
     public TKey Id { get; protected set; }
 
@@ -49,8 +59,13 @@ public abstract class BaseEntity<TKey> : IEntity, ITimeModification
         return (GetType().ToString() + Id).GetHashCode();
     }
 
-    public DateTime CreatedTime { get; set; }
     public DateTime? ModifiedDate { get; set; }
+    public bool IsDeleted { get; set; }
+    public DateTime? DeletedOn { get; set; }
+    public string CreatedBy { get; set; } = string.Empty;
+    public string? UpdatedBy { get; set; } = string.Empty;
+    public DateTime CreatedOn { get; set; }
+    public DateTime? UpdatedOn { get; set; }
 }
 
 public abstract class BaseEntity : BaseEntity<int>

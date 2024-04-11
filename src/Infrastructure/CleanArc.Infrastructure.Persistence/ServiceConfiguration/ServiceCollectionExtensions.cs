@@ -16,7 +16,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+        services.AddScoped<EntitySaveChangesInterceptor>();
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
             var hostSettings = sp.GetRequiredService<IOptions<HostSettings>>()?.Value;
@@ -27,13 +27,13 @@ public static class ServiceCollectionExtensions
                     options.UseSqlServer(configuration.GetConnectionString(nameof(HostDatabase.SqlServer)), builderOptions =>
                     {
                         builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.MSSQL");
-                    });
+                    }).AddInterceptors(sp.GetRequiredService<EntitySaveChangesInterceptor>());
                     break;
                 case HostDatabase.Postgres:
                     options.UseNpgsql(configuration.GetConnectionString(nameof(HostDatabase.Postgres)), builderOptions =>
                     {
                         builderOptions.MigrationsAssembly("CleanArc.Infrastructure.DbMigration.Postgres");
-                    });
+                    }).AddInterceptors(sp.GetRequiredService<EntitySaveChangesInterceptor>());
                     AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
                     break;
                 default:

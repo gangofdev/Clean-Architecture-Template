@@ -1,4 +1,6 @@
-﻿using CleanArc.Domain.Contracts.Persistence;
+﻿using CleanArc.Domain.Common;
+using CleanArc.Domain.Contracts;
+using CleanArc.Domain.Contracts.Persistence;
 
 namespace CleanArc.Infrastructure.Persistence.Repositories.Common;
 
@@ -14,6 +16,10 @@ public class UnitOfWork : IUnitOfWork
         _db = db;
         UserRefreshTokenRepository = new UserRefreshTokenRepository(_db);
         OrderRepository= new OrderRepository(_db);
+    }
+    public IGenericRepository<T> GetGenericRepository<T>() where T : BaseEntity
+    {
+        return new GenericRepository<T>(_db);
     }
 
     public  Task CommitAsync()
