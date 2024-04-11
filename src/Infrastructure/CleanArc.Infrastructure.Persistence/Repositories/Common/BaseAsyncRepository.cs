@@ -72,7 +72,6 @@ public abstract class BaseAsyncRepository<TEntity> where TEntity:class,IEntity
         {
             query = query.OrderBy(orderBy);
         }
-
         var totalRecords = await query.CountAsync();
         var result = await query.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
 

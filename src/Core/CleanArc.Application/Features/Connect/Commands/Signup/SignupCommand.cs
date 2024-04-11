@@ -48,4 +48,18 @@ public record SignupCommand
 
         return validator;
     }
+    /// <summary>
+    /// Custom Profile Mapper
+    /// </summary>
+    /// <param name="profile"></param>
+    void ICreateMapper<User>.Map(AutoMapper.Profile profile)
+    {
+        profile.CreateMap<SignupCommand, User>()
+            .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.UserName))
+            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForMember(dest => dest.FamilyName, opt => opt.MapFrom(src => src.FamilyName))
+            .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber)).ReverseMap();
+    }
+
+
 }

@@ -21,6 +21,7 @@ internal class SignupCommandHandler : IRequestHandler<SignupCommand, OperationRe
 
     public async ValueTask<OperationResult<SignupCommandResult>> Handle(SignupCommand request, CancellationToken cancellationToken)
     {
+        var userObj=this._mapper.Map<User>(request);
         var userNameExist = await _userManager.IsExistUser(request.PhoneNumber);
 
         if (userNameExist)
