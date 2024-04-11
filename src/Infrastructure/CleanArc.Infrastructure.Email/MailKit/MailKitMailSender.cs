@@ -1,6 +1,7 @@
 ﻿using CleanArc.Domain.Models.Email;
 using CleanArc.SharedKernel.Common;
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.Options;
 using MimeKit;
 
 namespace CleanArc.Infrastructure.Email.MailKit
@@ -8,9 +9,11 @@ namespace CleanArc.Infrastructure.Email.MailKit
     public class MailKitMailSender : IMailKitMailSender
     {
         private readonly EmailSettings _config;
-        public MailKitMailSender(EmailSettings mailKitConfig) 
+        public MailKitMailSender(IOptions<EmailSettings> mailKitConfig) 
         {
-            _config = mailKitConfig;
+            ArgumentNullException.ThrowIfNull(mailKitConfig, nameof(IOptions<EmailSettings>));
+            ArgumentNullException.ThrowIfNull(mailKitConfig.Value, nameof(EmailSettings));
+            _config = mailKitConfig.Value;
         }
 
         public async Task SendEmailAsync(EmailMessage message)

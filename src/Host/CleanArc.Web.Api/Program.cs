@@ -1,6 +1,7 @@
 using CleanArc.Application.ServiceConfiguration;
 using CleanArc.Domain.Entities.User;
 using CleanArc.Infrastructure.CrossCutting.Logging;
+using CleanArc.Infrastructure.Email.ServiceConfiguration;
 using CleanArc.Infrastructure.Identity.Identity.Dtos;
 using CleanArc.Infrastructure.Identity.Jwt;
 using CleanArc.Infrastructure.Identity.ServiceConfiguration;
@@ -55,6 +56,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddApplicationServices()
     .RegisterIdentityServices(identitySettings)
     .RegisterCoreServices()
+    .RegisterEmailServices()
     .AddPersistenceServices(configuration)
     .AddWebFrameworkServices();
 

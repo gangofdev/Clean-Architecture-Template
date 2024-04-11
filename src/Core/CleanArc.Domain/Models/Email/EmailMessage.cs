@@ -1,18 +1,9 @@
 ﻿namespace CleanArc.Domain.Models.Email
 {
-    public class EmailMessage
+    public class EmailMessage(string to, string subject, string body)
     {
-        public string From { get; set; }
-        public string To { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
-
-        public EmailMessage(string from, string to, string message, string body)
-        {
-            From = from;
-            To = to;
-            Subject = message;
-            Body = body;
-        }
+        public string To { get; set; } = to;
+        public string Subject { get; set; } = subject;
+        public string Body { get; set; } = body;
     }
 }
