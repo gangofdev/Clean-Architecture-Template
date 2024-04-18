@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\CleanArc.Infrastructure.Core\CleanArc.Infrastructure.Core.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\CleanArc.Infrastructure.Email\CleanArc.Infrastructure.Email.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Migrations\CleanArc.Infrastructure.DbMigration.MSSQL\CleanArc.Infrastructure.DbMigration.MSSQL.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Migrations\CleanArc.Infrastructure.DbMigration.Postgres\CleanArc.Infrastructure.DbMigration.Postgres.csproj" />
     <ProjectReference Include="..\CleanArc.WebFramework\CleanArc.WebFramework.csproj" />
