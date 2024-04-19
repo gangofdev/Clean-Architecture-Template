@@ -51,9 +51,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Infrastructure.Cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrations", "Migrations", "{D8E4E053-8982-4A0B-8947-A2D259FEA2D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArc.Infrastructure.DbMigration.MSSQL", "src\Infrastructure\Migrations\CleanArc.Infrastructure.DbMigration.MSSQL\CleanArc.Infrastructure.DbMigration.MSSQL.csproj", "{505E0306-E51E-4E28-9E62-54A155A11315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Infrastructure.DbMigration.MSSQL", "src\Infrastructure\Migrations\CleanArc.Infrastructure.DbMigration.MSSQL\CleanArc.Infrastructure.DbMigration.MSSQL.csproj", "{505E0306-E51E-4E28-9E62-54A155A11315}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArc.Infrastructure.DbMigration.Postgres", "src\Infrastructure\Migrations\CleanArc.Infrastructure.DbMigration.Postgres\CleanArc.Infrastructure.DbMigration.Postgres.csproj", "{8AD66702-2BB0-49EE-A196-4E93DED30DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArc.Infrastructure.DbMigration.Postgres", "src\Infrastructure\Migrations\CleanArc.Infrastructure.DbMigration.Postgres\CleanArc.Infrastructure.DbMigration.Postgres.csproj", "{8AD66702-2BB0-49EE-A196-4E93DED30DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArc.Infrastructure.Cache", "CleanArc.Infrastructure.Cache\CleanArc.Infrastructure.Cache.csproj", "{7D9F9C4A-1B0C-4DD6-9B8D-1DB61D08A51C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +123,10 @@ Global
 		{8AD66702-2BB0-49EE-A196-4E93DED30DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AD66702-2BB0-49EE-A196-4E93DED30DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AD66702-2BB0-49EE-A196-4E93DED30DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D9F9C4A-1B0C-4DD6-9B8D-1DB61D08A51C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D9F9C4A-1B0C-4DD6-9B8D-1DB61D08A51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D9F9C4A-1B0C-4DD6-9B8D-1DB61D08A51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D9F9C4A-1B0C-4DD6-9B8D-1DB61D08A51C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,6 +156,7 @@ Global
 		{D8E4E053-8982-4A0B-8947-A2D259FEA2D2} = {2373AFFC-1389-4D78-8465-074AB22084AF}
 		{505E0306-E51E-4E28-9E62-54A155A11315} = {D8E4E053-8982-4A0B-8947-A2D259FEA2D2}
 		{8AD66702-2BB0-49EE-A196-4E93DED30DD0} = {D8E4E053-8982-4A0B-8947-A2D259FEA2D2}
+		{7D9F9C4A-1B0C-4DD6-9B8D-1DB61D08A51C} = {2373AFFC-1389-4D78-8465-074AB22084AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {05C223B9-EA89-44B2-B9F5-D01181F85DFE}

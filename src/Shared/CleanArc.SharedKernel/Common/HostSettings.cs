@@ -9,6 +9,8 @@ namespace CleanArc.SharedKernel.Common
     public class HostSettings
     {
         public HostDatabase Database { get; set; }
+
+        public HostCache Cache { get; set; }
     }
 
     public enum HostDatabase
@@ -16,5 +18,11 @@ namespace CleanArc.SharedKernel.Common
          InMemory,
          SqlServer,
          Postgres,
+    }
+
+    public enum HostCache 
+    {
+        InMemory,
+        Redis,
     }
 }
